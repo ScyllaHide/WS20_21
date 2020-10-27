@@ -1,0 +1,153 @@
+\section{Permutationen und Permutationsgruppen}
+Permutationen können unterschiedlich definiert und dargestellt werden:
+\begin{enumerate}
+	\item als Lineare Anordnung von Elementen einer Menge, z.B. $M = \set{a,b,c}$
+	\begin{align*}
+		\pi_1\colon abc\\
+		\pi_2 \colon acb\\
+		\pi_3 \colon bac\\
+		\pi_4 \colon bca\\
+		\pi_5 \colon cab\\
+		\pi_6\colon cba
+	\end{align*}
+	\item als bijektive Abbildung (in 2-Zeilen-Darstellung)
+	\begin{align*}
+		\pi_1 = \begin{pmatrix}
+			a & b & c\\
+			a & b & c
+		\end{pmatrix}\\
+	\pi_2 = \begin{pmatrix}
+		a & b & c\\
+		a & c & b
+	\end{pmatrix}\\
+	\vdots\\
+	\pi_6 = ...
+	\end{align*}
+	allgemein
+	\begin{align*}
+		\pi = \begin{pmatrix}
+			a_1 & \dots &a_n\\
+			\vdots & & \vdots\\
+			a_{1i} & \dots & a_{1n}
+		\end{pmatrix}
+	\end{align*}
+	bezeichnen. Also Abbildung $\pi \colon M \to M$ mit $a_k \mapsto a_{i_k}$, wobei $M = \set{a_1, \dots, a_n}$ reihenfolge der Spalten spielt keine Rolle.
+\end{enumerate}
+\begin{definition}
+	Eine \begriff{Permutation} auf Menge $M$ ist bejektiv Abbildung $f \colon M \to M$
+	\begin{align*}
+		S_m := S(M) := \text{Menge aller Permutationen auf }M
+	\end{align*}
+	Bezeichnung: für Bild $f(a)$ eines Elementes $a \in M$ $a^f$ also ist
+	\begin{align*}
+		f = \begin{pmatrix}
+			a_1 & \dots & a_n\\
+			a^f_1 &\dots & a^f_n
+		\end{pmatrix}
+	\end{align*}
+\end{definition}
+\begin{proposition}
+	Für $\abs{M} = n$ gibt $n!$ viele Permutationen auf $M$.
+	\begin{align*}
+		\abs{S_M} = n!
+	\end{align*}
+\end{proposition}
+\begin{proof}
+	Selbststudium!
+\end{proof}
+\begin{definition}
+	Der Graph einer Permutation
+	\begin{itemize}
+		\item $f\colon M \to M$
+		\item $f^{\cdot} = \set{(a,b) \in M^2 \mid a^f = b}$ \begriff{Graph} von $f$, Paare $(a,b)$ als gerichtete Kanten von $a$ nach $b$ zeichnen.
+		\item Graph $f^{\cdot}$ (genauer: $(M,f^{\cdot})$ hat Knotenpunktmenge $M$ und Knotenmenge $f^{\cdot}$
+	\end{itemize}
+\end{definition}
+\begin{example}
+	\begin{align*}
+		f = \begin{pmatrix}
+			1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+			3 & 5 & 7 & 12 & 2 & 9 & 4 & 11 & 8 & 1 & 6 & 12 & 10
+		\end{pmatrix}
+	\end{align*}
+	\chemfig{1*6(-3-7-4-13-10-)}\\
+	\chemfig{6*4(-9-8-11-)}
+	\[
+		% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACYQBfU9TXfIRQBGclVqMWbAKzdxMKAHN4RUADMAThAC2SMiBwQkokACMYYKEgDMxHuq27EJw3urnLSACwBOLhS4gA
+		\begin{tikzcd}
+			2 \arrow[r, bend left] & 5 \arrow[l, bend left=49]
+		\end{tikzcd}
+		% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEYAmEAXypBhQA5vCKgAZgCcIAWyRkQOCPOoMIENETLjGcGPwZ0ARjAYAFTLnyFEISViEALHLwo8gA
+		\begin{tikzcd}
+		12 \arrow[loop, distance=2em, in=305, out=235]
+		\end{tikzcd}
+	\]
+Fakt Vorraussetzung $M$ endlich: Graph $f^{\cdot}$ einer Permutation $f$ ist ein Kreis (Zyklus) oder die Vereinigung  von paarweisen disjunkten Kreisen (Zyklen) (folgt aus Bijektivität) (Gilt nicht für unendliche Mengen $f \colon \Z \to \Z \mit x \mapsto x+1$)
+\end{example}
+Ab jetzt $M$ endlich.
+\begin{definition}
+	Die \begriff{Zyklendarstellung einer Permutation $f$} (entspricht ``lineares Aufschreiben von $f^{\cdot}$'')
+\end{definition}
+\begin{example}
+	$f$ wie oben
+	\begin{align*}
+		(1,3,7,4,13, 10)(2,5)(6,9,8,11)(12)	
+	\end{align*}
+\end{example}
+Falls $M$ fest, Zyklen der Menge 1 weglassen, das nennt man die \begriff{verkürtzte Zyklendarstellung}. \begriff{zyklische Permutation} := Permutation mit genau einem Zyklus in der verkürtzten Zyklendarstellung. Die identische Permutation $x \mapsto x$, Zyklendarstellung $(1)$.
+Beachte: $(abc),(bca),(cab)$ bezeichnen die selbe Permutation. (nur Reihenfolge, nicht Anfangselement wichtig)
+\begin{definition}
+	Die \begriff{Multipllikation} (Produkt) von Permutationen ist die Hintereinanderausführung von Abbildungen.
+	\[
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAFkQBfU9TXfIRQBGclVqMWbTjz7Y8BIgCYx1es1aIO3XiAzzBRMsPHqpWujrkDFI0ibWTNIOgD0AZlb38FQ5CocJDTY3YHcAcy5ucRgocPgiUHcAJwgAWyQyEBwIJFEQBjoAIxgGAAUfQy0GGHccEEdgrU9ZEBT0vOocpBUg8xBwr3aMxABmLtzEABYuuiwGNjS6NDhu1uGkGezJgFZZ+cXl1dyuCi4gA
+	\begin{tikzcd}
+		M \arrow[r, "f"]     & M \arrow[r, "g"]       & M      \\
+		a \arrow[r, maps to, "f"] & a^f \arrow[r, maps to, "g"] & a^{fg}
+	\end{tikzcd}
+	\]
+	Produkt $fg$ (oder $f;g$ oder $f\cdot g$, oder auch $g \circ g$) wird definiert durch 
+	\begin{align*}
+		a^{fg}:= (a^f)^g
+	\end{align*} 
+	ist wieder Permutation.
+\end{definition}
+\begin{example}
+	\begin{align*}
+		\begin{pmatrix}
+			1 & 2 &3\\
+			2 & 1 &3
+		\end{pmatrix}
+		\begin{pmatrix}
+			1 & 2 & 3\\
+			3 & 2 & 1
+		\end{pmatrix}=
+		\begin{pmatrix}
+			1 & 2 & 3\\
+			2 & 3 & 1
+		\end{pmatrix}
+	\end{align*}
+	\begin{itemize}
+		\item Zykeldarstellung: $(12)(3)\cdot (13)(2) = (123)$
+		\item verkürtzt: $(12)\cdot(13) = (123)$ 
+	\end{itemize}
+\end{example}
+Fakt: verkürtzte Zyklendarstellung $k$ Zyklen
+\begin{align*}
+	f = (--c_1--)(--c_2--)\dots (--c_3--)\\
+	g = (--c_i--)
+\end{align*}
+$g$ also Permutation zyklisch.
+Also haben wir
+\begin{align*}
+	f = g_1 \cdot g_2 \cdot \cdots \cdot g_k
+\end{align*}
+(Komposition)
+\begin{proposition}
+	Die Permutationen aus $S_M$ bilden mit der Multiplikation eine Gruppe. die volle symmetrische Gruppe vom Grad $\abs{M}$. (Einselement $(1)$ = identische Abbildung, inverse Abbildung $f^{-1}$ Zeilen in 2-Zeilendarstellung vertauschen. $(ab \dots xy)^{-1} = (yx\dots ba)$.
+\end{proposition}
+\begin{proof}
+	Selbststudium.
+\end{proof}
+\begin{remark}
+	Alle gruppentheoretische Begriffe sind auch für Permutationsgruppen definiert:Ordnung $\ord(f) = \min\set{m \mid f^m = e}$, Untergruppen, Normalteiler, konjugierte Elemente, usw.
+\end{remark}

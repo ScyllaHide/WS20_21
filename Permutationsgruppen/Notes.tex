@@ -1,6 +1,7 @@
 % !TeX spellcheck = en_US
 \documentclass[ngerman,a4paper,order=firstname]{mathscript}
 \usepackage{mathoperators}
+\usepackage{chemfig}
 
 % % % local commands
 \DeclareMathOperator{\Ad}{Ad}				% Adjoint
@@ -37,6 +38,9 @@
 % Nice looking emptyset
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
+
+% remove matrix columns limit
+\setcounter{MaxMatrixCols}{20}
 
 % get this stupid arrows:
 %\usepackage{mathabx,graphicx}  % ---> add to mathoperators
@@ -104,6 +108,7 @@
 \input{./TeX_files/Vorwort}
 \chapter{Vector Bundles}
 \input{./TeX_files/chap1}
+\input{./TeX_files/chap2}
 
 \part*{Anhang}
 \addcontentsline{toc}{part}{Anhang}
