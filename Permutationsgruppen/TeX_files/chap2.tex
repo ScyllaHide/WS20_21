@@ -3,25 +3,20 @@ Permutationen können unterschiedlich definiert und dargestellt werden:
 \begin{enumerate}
 	\item als Lineare Anordnung von Elementen einer Menge, z.B. $M = \set{a,b,c}$
 	\begin{align*}
-		\pi_1\colon abc\\
-		\pi_2 \colon acb\\
-		\pi_3 \colon bac\\
-		\pi_4 \colon bca\\
-		\pi_5 \colon cab\\
-		\pi_6\colon cba
+		\pi_1\colon abc &\qquad \pi_2 \colon acb\\
+		\pi_3 \colon bac &\qquad \pi_4 \colon bca\\
+		\pi_5 \colon cab &\qquad \pi_6\colon cba
 	\end{align*}
 	\item als bijektive Abbildung (in 2-Zeilen-Darstellung)
 	\begin{align*}
 		\pi_1 = \begin{pmatrix}
 			a & b & c\\
 			a & b & c
-		\end{pmatrix}\\
+		\end{pmatrix},\;
 	\pi_2 = \begin{pmatrix}
 		a & b & c\\
 		a & c & b
-	\end{pmatrix}\\
-	\vdots\\
-	\pi_6 = ...
+	\end{pmatrix}, \dots, \pi_6 = ...
 	\end{align*}
 	allgemein
 	\begin{align*}
@@ -31,7 +26,7 @@ Permutationen können unterschiedlich definiert und dargestellt werden:
 			a_{1i} & \dots & a_{1n}
 		\end{pmatrix}
 	\end{align*}
-	bezeichnen. Also Abbildung $\pi \colon M \to M$ mit $a_k \mapsto a_{i_k}$, wobei $M = \set{a_1, \dots, a_n}$ reihenfolge der Spalten spielt keine Rolle.
+	bezeichnen. Also Abbildung $\pi \colon M \to M$ mit $a_k \mapsto a_{i_k}$, wobei $M = \set{a_1, \dots, a_n}$ Reihenfolge der Spalten spielt keine Rolle.
 \end{enumerate}
 \begin{definition}
 	Eine \begriff{Permutation} auf Menge $M$ ist bejektiv Abbildung $f \colon M \to M$
@@ -94,7 +89,7 @@ Ab jetzt $M$ endlich.
 		(1,3,7,4,13, 10)(2,5)(6,9,8,11)(12)	
 	\end{align*}
 \end{example}
-Falls $M$ fest, Zyklen der Menge 1 weglassen, das nennt man die \begriff{verkürtzte Zyklendarstellung}. \begriff{zyklische Permutation} := Permutation mit genau einem Zyklus in der verkürtzten Zyklendarstellung. Die identische Permutation $x \mapsto x$, Zyklendarstellung $(1)$.
+Falls $M$ fest, Zyklen der Menge 1 weglassen, das nennt man die \begriff{verkürtzte Zyklendarstellung}. \begriff{zyklische Permutation} := Permutation mit genau einem Zyklus in der verkürtzten Zyklendarstellung. Die identische Permutation $x \mapsto x$, Zyklendarstellung $(1)$.\\
 Beachte: $(abc),(bca),(cab)$ bezeichnen die selbe Permutation. (nur Reihenfolge, nicht Anfangselement wichtig)
 \begin{definition}
 	Die \begriff{Multipllikation} (Produkt) von Permutationen ist die Hintereinanderausführung von Abbildungen.
@@ -146,8 +141,157 @@ Also haben wir
 	Die Permutationen aus $S_M$ bilden mit der Multiplikation eine Gruppe. die volle symmetrische Gruppe vom Grad $\abs{M}$. (Einselement $(1)$ = identische Abbildung, inverse Abbildung $f^{-1}$ Zeilen in 2-Zeilendarstellung vertauschen. $(ab \dots xy)^{-1} = (yx\dots ba)$.
 \end{proposition}
 \begin{proof}
-	Selbststudium.
+	\sest
 \end{proof}
 \begin{remark}
 	Alle gruppentheoretische Begriffe sind auch für Permutationsgruppen definiert:Ordnung $\ord(f) = \min\set{m \mid f^m = e}$, Untergruppen, Normalteiler, konjugierte Elemente, usw.
 \end{remark}
+% 2nd lecture 3.11.2020
+\begin{definition}
+	Eine \begriff{Permutatiosngruppe} $G$ von Grad $n$ ist eine Untergruppe der vollen symmetrischen Gruppe $S_M$ vom Grad $n$.\\
+	Bezeichnung: $(G,M)$ oder auch falls $G$ Untergruppe ist, $G \le S_M$. Wobei meist
+	\begin{align*}
+		M &= \set{0,1,\dots,n-1} =: n \implies S_n\\
+		M &= \set{1,2,\dots, n} =: \uline{n} \implies S_{\uline{n}}
+	\end{align*}
+\end{definition}
+\begin{remark}
+	Weitere Schreibweisen für $U,V \subseteqq S_M$, dabei
+	\begin{align*}
+		UV &= \set{uv \mid u\in U, v \in V}
+		\intertext{$a\in M, B\subseteqq M, g \in S_M$}
+		a^u &= \set{a^u \mid u \in U}\\
+		B^g &= \set{b^g \mid b \in B}\\
+		B^u & = \set{b^u \mid b \in B, u \in U}
+	\end{align*}
+\end{remark}
+\begin{proposition}[Gruppenkriterium]
+	Sei $M$ endlich. Dann ist $U \subseteqq S_M$ Gruppe genau dann, wenn $U\cdot U \subseteqq U$.
+\end{proposition}
+\begin{proof}
+	\sest
+\end{proof}
+\begin{example}
+	Symmetrieabbildung des Rechtecks in der Ebene
+%	\begin{center}
+%		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+%		
+%		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%			%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+%			
+%			%Shape: Rectangle [id:dp8018685777285718] 
+%			\draw   (100,110) -- (159.83,110) -- (159.83,169.67) -- (100,169.67) -- cycle ;
+%			%Straight Lines [id:da9350361269288623] 
+%			\draw  [dash pattern={on 0.84pt off 2.51pt}]  (79.83,139.67) -- (179.83,139.67) ;
+%			%Straight Lines [id:da8951381985636013] 
+%			\draw  [dash pattern={on 0.84pt off 2.51pt}]  (129.5,90) -- (129.83,190.67) ;
+%			
+%			% Text Node
+%			\draw (161,95) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {2};
+%			% Text Node
+%			\draw (161.83,172.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {3};
+%			% Text Node
+%			\draw (90,97) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {1};
+%			% Text Node
+%			\draw (88,173) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {4};
+%			% Text Node
+%			\draw (124,70) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {II};
+%			% Text Node
+%			\draw (182,131) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {I};
+%			
+%			
+%		\end{tikzpicture}
+%		
+%	\end{center}
+können durch Permutation der Eckpunkte beschrieben werden. Also
+\begin{center}
+	\begin{tabular}{|c|c|}
+		Identitätsabbildung: & $(1) =: e$\\
+		Drehung 180°: & $(13)(24) =: g_1$\\
+		Spiegelung an I: & $(14)(23) =: g_2$\\
+		Spiegelung an II: & $(12)(34) =: g_3$  
+	\end{tabular}
+\end{center}
+Damit ist $G = \set{e,g_1,g_2,g_3}$ Permutationsgruppe und $G \cong$ Symmetriegruppe des Rechtecks in der Ebene.
+\begin{center}
+	\begin{tabular}{c|cccc}
+		$\cdot$ & $e$ 	& $g_1$ & $g_2$ & $g_3$\\
+		\hline
+		$e$   	& $e$   & $g_1$ & $g_2$ & $g_3$\\
+		$g_1$ 	& $g_1$ & $e$   & $g_3$ & $g_2$\\
+		$g_2$ 	& $g_2$ & $g_3$ & $e$   & $g_1$\\
+		$g_3$ 	& $g_3$ & $g_2$ & $g_1$ & $e$\\
+	\end{tabular}
+\end{center}
+das ist die \person{Klein}sche Vierergruppe, die isomorph zu $\Z_2 \times \Z_2$ ist.
+\end{example}
+\begin{definition}
+	Sei $(G,M)$ Permutationsgruppe, $a\in M$, dann definiere
+	\begin{enumerate}
+		\item Den \begriff{Stabilisator} von $a$
+		\begin{align*}
+			G_a := \set{g \in G \mid a^g = a}
+		\end{align*}
+		Allgemeiner haben wir 
+		\begin{align*}
+			G_{a_1, a_2, \dots, a_m} := \bigcap_{i=1}^m G_{a_i}.
+		\end{align*}
+		\item Die \begriff{Bahn} (1-Bahn, Orbit)
+		\begin{align*}
+			a^G := \set{a^g \mid g \in G}.
+		\end{align*}
+		Also ist der 1-$\Orb(G,M):=$ Menge aller 1-Bahnen (Andere Bezeichnung: $G\Vert M$).
+		\item $B \subseteq M$ \begriff{invariante Menge} (bezüglich $G$) $:\equival B^G \subseteqq B$ 
+		\item $G$ \begriff{transitiv} $\equival \exists a \in M \colon a^G = M$
+		\begin{*remark}
+			Äquivalent dazu sind:
+			\begin{align*}
+				\forall a \in M \colon a^G = M\\
+				\abs{1-\Orb(G,M)} = 1
+			\end{align*}
+		\end{*remark}
+	\end{enumerate}
+\end{definition}
+\begin{lemma}
+	Sei $G \le S_M, a \in M$. Es gilt:
+	\begin{lemmaenum}
+		\item $G_a$ ist Untergruppe von $G$. \label{lem_1.11_1}
+		\item $G_{a^g} = g^{-1}(G_a)g$ $(g \in G)$ \label{lem_1.11_2}
+		\item Durch $a \sim b \equival a^G = b^G$ ist eine Äquivalenzrelation gegeben und es gilt:
+		\begin{align*}
+			1-\Orb(G,M) = M/\sim
+		\end{align*}
+		Die menge aller 1-Bahnen bildet eine Zerlegung von $M$ (zwei Bahnen sind gleich oder disjunkt).\\
+		Beachte:
+		\begin{align*}
+			b \in a^G \equival a \in b^G \quad \text{ Sest!}
+		\end{align*}
+		\label{lem_1.11_3}
+		\item Jede invariante Menge $B \subseteqq M$ ist Vereinigung von 1-Bahnen
+		\begin{align*}
+			B = B^G = \bigcup_{b \in B} b^G
+		\end{align*}
+		\label{lem_1.11_4}
+	\end{lemmaenum}
+\end{lemma}
+\begin{proof}
+	\cref{lem_1.11_1} - \cref{lem_1.11_3} SeSt, \cref{lem_1.11_4} klar nach Definition!
+\end{proof}
+\begin{remark}
+	Repräsentatensystem einer Zerlegung $1-\Orb(G,M)$ heisst \begriff{Transversale}.
+\end{remark}
+\subsection*{Wiederholung Algebra}
+\begin{proposition}[Satz von \person{Lagrange}]\label{prop:lagrange}
+	Die Ordnung $\abs{U}$ jeder Untergruppe einer endlichen Gruppe $G$ ist Teiler der Gruppenordnung. Es gilt
+	\begin{align*}
+		\abs{G} = [G\colon U]\cdot \abs{U}
+	\end{align*}
+	(wobei $[\cdot\colon \cdot]$ der Index ist).
+\end{proposition}
+\begin{proof}
+	Index $[G\colon U] = \abs{G/U}$ = Anzahl $k$ der (rechts-)Nebenklassen $Ug$ in der Nebenklassenzerlegung.
+	\begin{align*}
+		G = U g_1 \cup U g_2 \cup \dots U g_k
+	\end{align*}
+	Dabei ist die Nebenklasse durch $Ug := \set{u\cdot g \mid u \in U}$ und $G/U := \set{Ug \mid g \in G}$ und wegen $\abs{U} = \abs{Ug}$ folgt \cref{prop:lagrange}.
+\end{proof}

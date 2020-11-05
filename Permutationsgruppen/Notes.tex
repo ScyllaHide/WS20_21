@@ -2,6 +2,7 @@
 \documentclass[ngerman,a4paper,order=firstname]{mathscript}
 \usepackage{mathoperators}
 \usepackage{chemfig}
+\usepackage{chemformula}
 
 % % % local commands
 \DeclareMathOperator{\Ad}{Ad}				% Adjoint
@@ -29,6 +30,9 @@
 \newcommand{\isoset}[3]{\Phi^{#1}_{#2}(#3)} % isomorphism class of - F vector bundles
 \DeclareMathOperator{\Open}{Open}				% inclusion category for presheafs
 \newcommand{\presheaf}{\mathcal S}			% presheaf
+\newcommand{\equival}{\Leftrightarrow}
+\DeclareMathOperator{\Orb}{Orb}
+\newcommand{\sest}{SeSt.}
 
 % % % % color note stuff
 %\newcommand{\marganote}[1]{\textcolor{gray}{#1}}
@@ -106,8 +110,10 @@
 
 \chapter*{Preface}
 \input{./TeX_files/Vorwort}
-\chapter{Vector Bundles}
+%\setcounter{0}
+\chapter{Einführung}
 \input{./TeX_files/chap1}
+\chapter{Permutationen und Permutationsgruppen}
 \input{./TeX_files/chap2}
 
 \part*{Anhang}
