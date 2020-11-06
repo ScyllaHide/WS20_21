@@ -205,8 +205,9 @@ Also haben wir
 %	\end{center}
 können durch Permutation der Eckpunkte beschrieben werden. Also
 \begin{center}
-	\begin{tabular}{|c|c|}
+	\begin{tabular}{c|c}
 		Identitätsabbildung: & $(1) =: e$\\
+		\hline
 		Drehung 180°: & $(13)(24) =: g_1$\\
 		Spiegelung an I: & $(14)(23) =: g_2$\\
 		Spiegelung an II: & $(12)(34) =: g_3$  
@@ -295,3 +296,112 @@ das ist die \person{Klein}sche Vierergruppe, die isomorph zu $\Z_2 \times \Z_2$ 
 	\end{align*}
 	Dabei ist die Nebenklasse durch $Ug := \set{u\cdot g \mid u \in U}$ und $G/U := \set{Ug \mid g \in G}$ und wegen $\abs{U} = \abs{Ug}$ folgt \cref{prop:lagrange}.
 \end{proof}
+\begin{lemma}\label{lem:stab}
+	Sei $a \in M, G \le S_M$.
+	\begin{align*}
+		\begin{cases}
+			a^G &\to G/G_a\\
+			a^g &\mapsto G_a g
+		\end{cases}
+	\end{align*}
+	ist eine bijektive Abbildung zwischen Elementen der von $a$ erzeugten Bahn un den Nebenklassen nach dem Stabilisator $G_a$ gegeben.
+	\scyllanote{Insbesondere gilt:
+	\begin{align*}
+		\abs{a^G} = [G\colon G_a] = \abs{G/G_a}
+	\end{align*}
+	}
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		a^g = a^{g'} &\overset{\scyllanote{\equival}}{\implies} a= a^{g'g^{-1}}\overset{\scyllanote{\equival}}{\implies} g'g^{-1} \in G_a\\
+		&\overset{\scyllanote{\equival}}{\implies} g' \in G_a g\overset{\scyllanote{\equival}}{\implies} G_a g' = G_a g
+	\end{align*}
+	(letzte $\implies$ benutzt Nebenklassen gleich oder disjunkt)
+	\begin{itemize}
+		\item $\implies$ zeigt, dass $a^g \mapsto G_a g$ wohldefiniert ist
+		\item $\scyllanote{\Leftarrow}$ zeigt, dass $a^g \mapsto G_a g$ injektiv ist.
+		\item Surjektivität ist klar, da $g$ beliebig gewählt werden kann.
+	\end{itemize}
+\end{proof}
+Nun formulieren wie eine Folgerung, die \cref{prop:lagrange} und \cref{lem:stab}.
+\begin{conclusion}[Permutationsgruppentheoretische Umformulierung des \cref{prop:lagrange}]\label{folg:permu_langrange}
+	Für $a \in M$, $G \le S_M$ gilt:
+	\begin{align*}
+		\abs{G} = \abs{G_a} \cdot \abs{a^G}
+	\end{align*}
+\end{conclusion}
+\begin{proof}
+	\begin{align*}
+		\abs{G} \overset{\cref*{prop:lagrange}}&{=} [G\colon U]\cdot \abs{U} = [G \colon G_a]\cdot [G_a]\\
+		&= \abs{G/G_a}\cdot \abs{G_a} \overset{\cref*{lem:stab}}{=} \abs{a^G}\cdot \abs{G_a}
+	\end{align*}
+\end{proof}
+\begin{example}
+	Sei $G:= S_{\ul{4}}$, $1^G = \set{1,2,3,4}$ und $M = \ul{4} = \set{1,2,3,4}$, dann
+	\begin{align*}
+		\abs{G_1} \overset{\cref*{folg:permu_langrange}}&{=} \abs{G} / \abs{1^G} = 4! / 4 = 3! = 6 
+	\end{align*}
+	``Raten'' der Permutationen aus $G_1$ führt zu
+	\begin{align*}
+		G_1 = \set{(1), (23), (24), (34), (234), (243)}
+	\end{align*}
+	(mehr als 6 gibt es nicht!)\\
+	Iteration führt zu
+	\begin{align*}
+		\abs{G_{1,2}} &= \abs{G_1}:\abs{2^{G_1}} = 6:3 = 2\\
+		G_{1,2} &= \set{(1), (34)}\\
+		\abs{G_{1,2,3}} &= \abs{G_{1,2}}:\abs{3^{G_{1,2}}} = 2:2 = 1\\
+		G_{1,2,3} &= \set{(1)}
+	\end{align*}
+\end{example}
+\begin{definition}
+	Zwei Permutationsgruppen (bzw. Wirkungen, siehe 2.2) %TODO add reference later!
+	$(G,M)$ und $(H,N)$ heißen \begriff{ähnlich}, wenn eine bijektive Abbildung  
+	\begin{align*}
+		f\colon M \to N
+	\end{align*}
+	und ein Gruppenisomorphismus
+	\begin{align*}
+		\phi\colon G \to H
+	\end{align*} 
+	existieren, so dass gilt:
+	\begin{align*}
+		\forall a \in M, \forall g\in G\quad f(a^g) = f(a)^{\phi(g)}
+	\end{align*}
+	d.h. das Diagramm
+	\[
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAFkQBfU9TXfIRQBGclVqMWbAHLdeIDNjwEio4ePrNWiELJ58lgomXXVNUnZy7iYUAObwioAGYAnCAFskZEDghJhfRA3TyQAZmo-JAAmM0ltYLkXdy9EUV9-RFiJLTYAHTy0AAssAAo7AEok4JTvSMyInIsQO2qQ1J8otLjcnWduCi4gA
+	\begin{tikzcd}
+		M \arrow[r] \arrow[d, "g"] \arrow[r, "f"] & N \arrow[d, "\phi(g)"] \\
+		M \arrow[r, "f"]                          & N                     
+	\end{tikzcd}
+	\]
+	ist kommutativ.
+\end{definition}
+\begin{*remark}
+	Durch $f$ und $G$ ist $\phi$ und $H$ vollständig festgelegt (folgt aus Diagramm)
+	\begin{align*}
+		y \in N \quad y^{\phi(g)} = g^{f^{-1}gf}\\
+		H = \set{\phi(g) \mid g \in G} = \set{f^{-1}gf \mid g \in G}
+	\end{align*}
+\end{*remark}
+Beachte: Ähnlichkeit impliziert Isomorphie, Äquivalenz gilt im Allgemeinen nicht!
+\begin{example}
+	\begin{enumerate}
+		\item $S_M$ ähnlich zu $S_N \implies \abs{M} = \abs{N}$
+		\item $(G,M) = (\set{e, (12)}, \set{(1,2)})$ ähnlich zu $(\set{e, (\alpha, \beta)}, \set{\alpha, \beta}) = (H,N)$ aber nicht ähnlich zu $(\set{e, (1,2)}, \set{1,2,3,4}) = (G',M')$, obwohl $G \cong G'$ (als Gruppen).
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	Ähnlichkeit und Konjugiertheit von Permutationen
+	\begin{enumerate}
+		\item zwei Permutationen $g_1, g_2 \in S_M$ heißen \begriff{ähnlich}, wenn in ihren Zyklendarstellungen gleich viele Zyklen, gleicher Länge vorkommen, z.B.
+		\begin{align*}
+			g_1 =& (1)(2)(345)(67)(89)\\
+			g_2 =& (3)(7)(149)(28)(56)\\
+				 & \scyllanote{(\cdot)(\cdot)(\cdot\cdot\cdot)(\cdot\cdot)(\cdot\cdot)}
+		\end{align*}
+		\item Sei $G \le S_M$, $g_2 \in S_M$ heißt \begriff{konjugiert} zu $g_1 \in G$, wenn ein $f \in G \scyllanote{\neq S_M}$ existiert, so dass $g_2 = f^{-1}g_1 f$.\\
+		Sprechweise: $g_1$ und $g_2$ sind konjugiert.
+	\end{enumerate}
+\end{definition}
