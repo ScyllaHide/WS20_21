@@ -60,7 +60,7 @@
 
 %decent space; change explicitly the space between header and content and footer and content
 \RequirePackage[left=2.1cm,right=3.1cm,bottom=3cm,footskip=0.75cm,headsep=0.5cm]{geometry}
-\RequirePackage[english]{babel}
+\RequirePackage[german]{babel}
 
 
 \ifpdf
@@ -494,17 +494,17 @@ outerlinewidth=0.1pt,
 
 %cref: print correct translation
 \crefname{theorem}{Theorem}{Theorems}
-\crefname{proposition}{proposition}{propositons}
+\crefname{proposition}{satz}{Satze}
 \crefname{lemma}{Lemma}{Lemmata}
-\crefname{conclusion}{Corolary}{Corollaries}
+\crefname{conclusion}{Folgerung}{Folgerungen}
 \crefname{definition}{Definition}{Definitions}
-\crefname{remark}{Remark}{Remarks}
-\crefname{example}{Example}{Examples}
-\crefname{erinnerung}{Reminder}{Remindner}
+\crefname{remark}{Bemerkung}{Bemerkungen}
+\crefname{example}{Beispiel}{Beispiele}
+\crefname{erinnerung}{Erinnerung}{Erinnerungen}
 \crefname{algorithm}{Algorithmn}{Algorithmns}
-\crefname{*definition}{Definition}{Definitions}
-\crefname{*remark}{Remark}{Remarks}
-\crefname{*example}{Example}{Examples}
+\crefname{*definition}{Definition}{Definitionen}
+\crefname{*remark}{Bemerkung}{Bemerkungen}
+\crefname{*example}{Beispiel}{Beispiele}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Additional features
