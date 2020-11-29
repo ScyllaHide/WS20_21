@@ -1,0 +1,146 @@
+Problem: Beschreibung von Permutationsgruppen, Aufzählung aller Elemente ist nur selben möglich ($S_{\uline{100}} = 100 \implies 10^{100} \dots 10^{200}$)\\
+Aufzählung: Beschreibung als Automorphismusgruppen (siehe Kapitel 4 und 5) oder durch EZS.\\
+Wiederholung:
+\begin{definition}
+	$U \subseteq G$ heißt \begriff{Erzeugendensystem} einer Gruppe $G :\equival$ jedes $g \in G$ ist als endliches Produkt $u_1, \dots, u_m$ mit $u_i \in U$ oder $u^{-1}_i \in U$ darstellbar.\\
+	Bezeichunung: $G = \langle u_i \rangle_G$.
+\end{definition}
+Probleme:
+\begin{itemize}
+	\item[(P1)] Entscheide $g \in \gen{U}$ für $g \in S_n, U \subseteq S_n$?
+	\item[(P2)] Bestimme Bahnen von $\gen{U}$, spezielle Bahnen $a^{\gen{U}}$ für spezielle $a \in G$.
+	\item[(P3)] Beschreibung der Untergruppen von $\gen{U}$, benutze Methode von \begriff{SIMS} für große $G$. Man benutzt Menge $T_i$ für $i =\set{1,\dots,r}$, sodass
+	\begin{align*}
+		G = T_r \cdot T_{r-1} \cdots T_1
+	\end{align*}
+	und Darstellung
+	\begin{align*}
+		g = t_r \cdot t_{r-1} \cdot t_{r-2}\cdots t_1
+	\end{align*}
+	ist Eindeuting.
+\end{itemize}
+Damit wäre die Speicherformel: $\sum_{i=1}^r \abs{T_i}$
+\begin{*example}
+	$G = S_{\uline{n}}$ impliziert $\abs{G} = n!$ oder $\sum \abs{T_i} \le \frac{n(n+1)}{2}$ möglich, also ist der Speicherbedarf $\sim n^2$.
+\end{*example}
+\begin{definition}[\person{Sims}-Kette, \person{Sims}-Basis, Transversale]
+	\label{sec3:def:sims_stuff}
+	Die Sims-Kette einer Permutationsgruppe $G \subseteq S_M$, $M = \set{a_1, \dots, a_n}$ speziell $M = \uline{n} = \set{1, \dots, n}$\\
+	für punktweise Stabilisatoren:
+	\begin{align*}
+		\begin{matrix}
+			U_1 = G_{n_1} & U_2 = G_{n_1,n_2} & \dots & U_i = G_{n_1,\dots,n_i} &
+			U_n = G_{n_1,\dots,n_n} = \set{e}
+		\end{matrix}
+	\end{align*}
+	Also haben wir
+	\begin{align*}
+		\set{e} = U_1 \subseteq U_2 \subseteq \cdots \subseteq U_i \subseteq \cdots \subseteq U = G
+	\end{align*}
+	Sei $r:= \min\set{i \mid U_i = \set{e}}$ (hängt von der Reihenfolge der Elemente $n_i$ ab). Die Menge der $\set{a_1, \dots, a_r}$ genauer $(a_1,\dots, a_r)$ heißt \begriff{SIMS-Basis} von $G$ und
+	\begin{align*}
+		\set{e} = U_r \lneqq U_{r-1} \leqq \cdots \leqq U_1 \leqq U_0 = 0
+	\end{align*}
+	ist die \begriff{SIMS-Kette} von $G$ der Länge $r$ (zur Basis $(a_1, \dots, a_r)$). Für
+	\begin{align*}
+		U_{i-1}/U_i = U_i g_{i_1} \dcup U_i g_{i_2} \dcup U_i g \dcup \dots \dcup U_i g_{i_{n_i}}\quad \text{meist }g_{i_1} = e
+	\end{align*}
+	wird Repräsentatensystem (\begriff{Transversale}) $T_i := \set{g_{i_1}, \dots, g_{i_{n_i}}}$ gewählt $(i = 1, \dots, r)$.\\
+	Beachte: 
+	\begin{align*}
+		U_{r-1}/U_r \cong U_{r-1}\text{,also } T_r = U_{r-1}
+	\end{align*}
+\end{definition}
+Bei Umnummerierung der Elemente entstehen möglicherweise kürzere Base. (Fixpunkte in Basis weggelassen)
+\begin{proposition}
+	Seien $G,T_i$ wie in \cref{sec3:def:sims_stuff}. Dann gilt
+	\begin{defenum}
+		\item Jede Permutation $g \in G$ lässt sich eindeutig in der Form
+		\begin{align*}
+			g = h_r h_{r-1} \cdots h_1 \mit h_i \in T_i\;(i \in \set{1, \dots, r})
+		\end{align*}
+		darstellen. Insbesondere gilt dann
+		\begin{align*}
+			G = T_r T_{r-1} \cdot \dots \cdot T_1 \nd \abs{G} = \prod_{i=1}^r n_i.
+		\end{align*} \label{sec3:prop3:unique_simsform}
+		\item Jede Permutation $g \in G$ ist eindeutig durch die Bilder der Basis festgelegt, d.h. durch $(a_1^g, \dots, a_r^g)$.\label{sec3:def:unique_image}
+	\end{defenum}
+\end{proposition}
+\begin{*remark}
+	\cref{sec3:prop3:unique_simsform} impliziert $T_1 \cup \dots \cup T_r$ ist ein (spezielles) Erzeugendensystem für $G$.
+\end{*remark}
+\begin{proof}
+	\begin{itemize}
+		\item zu \cref{sec3:prop3:unique_simsform}:
+		\begin{align*}
+			g \in G \implies \exists! h_1 \in T_1 \colon g \in U_1 h_1\\
+			\implies gh^{-1}_1 \in U_1 \implies \exists! h_2 \in T_2 \colon gh^{-1}_1 \in U_2 h_2\\
+			\implies gh^{-1}_1 h_2^{-1} \in U_2 \implies \exists! h_3 \dots\\
+			\implies gh^{-1}_1 h_2^{-1} \dots h_r^{-1} \in U_r = \set{e}\\
+			\implies g = h_r h_{r-1}\cdot \dots \cdot h_2\cdot h_1
+		\end{align*}
+		Eindeutigkeit der Darstellung folgt aus der Eindeutigkeit der Repäsentaten (der Nebenklassen).
+		\item zu \cref{sec3:def:unique_image}:
+		\begin{align*}
+			(a_1^g, \dots, a_r^g) = (a_1^{g'}, \dots, a_r^{g'}) \implies a_i^{gg^{-1}} = a_i \quad \text{ Fixpunkte}
+			\intertext{d.h.}
+			gg^{-1} \in G_{a_1 a_2 \dots a_r} = \set{e} \implies g = g'
+		\end{align*}
+	\end{itemize}
+\end{proof}
+\begin{example}
+	Sei $G = S_{\ul{4}}, M = \set{a_1, a_2, a_3, a_4} = \set{1,2,3,4}$, $G_1 \cong S_3$, $G_{1,2} \cong S_2$ und $G_{1,2,3} = \set{e}$, dann muss man etwas rechnen und bekommt
+	\begin{align*}
+		\begin{matrix}
+			T_1 = \set{e,g_1, g_1^2, g_1^3} & \text{für } g_1=(1234)\\
+			T_2 = \set{e,g_2, g_2^2} & \text{für } g_2=(234)\\
+			T_1 = \set{e,g_3} & \text{für } g_3=(34)\\
+		\end{matrix}
+	\end{align*}
+	Dann folgt mit \cref{sec3:prop3:unique_simsform}: Jedes $g \in S_{\ul{4}}$ ist eindeutig in der Form
+	\begin{align*}
+		g=g_3^{\alpha_3}g_2^{\alpha_2}g_1{\alpha_1}
+	\end{align*}
+	wobei $\alpha_3 \in \set{0,1}$, $\alpha_2 \in \set{0,1,2}$, $\alpha_1 = \set{0,1,2,3}$ und $g_0 = e$.
+\end{example}
+\begin{*remark}
+	Speicheraufwand (in Bit):
+	\begin{align*}
+		\abs{T_1} = 4 &\implies 2 \text{ Bit}\\
+		\abs{T_2} = 3 &\implies 2 \text{ Bit}\\
+		\abs{T_3} = 2 &\implies 1 \text{ Bit}\\
+				      &\implies 5 \text{ Bit}
+	\end{align*}
+	ist optimal, da wir $2^4 (16)\lneqq 4! (24) \le 2^5 (32)$ haben.
+\end{*remark}
+\begin{conclusion}[Test $g \in G$, vergleiche Probleme (P1) vom Anfang des Kapitels]
+	Für $G \le S_M$ seinen eine SIMS-Basis $(a_1, \dots, a_r) \nd T_1, \dots, T_r$ bekannt (vergleiche \cref{sec3:def:sims_stuff}), $g \in S_M$ gegeben.\\
+	\newcommand{\ja}{\text{ ja}} \newcommand{\nein}{\text{nein}}
+	Algorithmus zum Testen, ob $g \in G$.
+	\begin{align*}
+		\begin{matrix}
+			\exists h_1 \in T_1 \colon a_1^{gh_1^{-1}} = a_1? & \xrightarrow{\nein} g \notin G\\
+			\downarrow \ja& \\
+			\exists h_2 \in T_2 \colon a_2^{gh_1^{-1}h_2^{-1}} = a_2? & \xrightarrow{\nein} g \notin G\\
+			\downarrow \ja & \\
+			\dots & \\
+			\exists h_r \in T_r \colon a_r^{gh_1^{-1}h_2^{-1}\cdots h_r^{-1}} = a_r? & \xrightarrow{\nein} g \notin G\\
+			\downarrow \ja & \\
+			\exists gh_1^{-1}h_2^{-1}\dots h_r^{-1} = e? & \xrightarrow{\nein} g \notin G\\
+			\downarrow \ja & \\
+			g \in G
+		\end{matrix}
+	\end{align*}
+\end{conclusion}
+\begin{proof}
+	1. Schritt: Wegen $G = \bigcup_{h \in T_1} G_{a_1}h$ folgt\\
+	\begin{align*}
+		g \in G \equival \exists h \in T_1 \colon g \in G_{a_1}h \equival \exists h \in T_1 \colon gh^{-1} \in G_{a_1}\\
+		\equival \exists h \in T_1 \colon a_1^{gh^{-1}} = a_1 \wedge gh^{-1} \in G \implies \exists h \in T_1 \colon a_1^{gh^{-1}} = a_1.
+	\end{align*}
+	Also führt der ($\xrightarrow{\nein}$)-Zweig zu $g \notin G$. (Die weiteren Schritte sind analog.)
+\end{proof}
+Problem: Wie findet man das Repräsentatensystem $T_1, \dots, T_r$ für die Untergruppen $U_1, \dots, U_r$, falls Erzeugendensystem $U$ gegeben
+\begin{align*}
+	G = \gen{U} \quad \text{ vergleiche (P3) und \cref}
+\end{align*}

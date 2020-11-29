@@ -35,6 +35,10 @@
 \DeclareMathOperator{\Orb}{Orb}
 \newcommand{\sest}{SeSt.}
 \renewcommand{\phi}{\varphi}
+\newcommand{\gen}[1]{\langle #1 \rangle}
+\newcommand{\st}[1]{#1^{\ast}}
+\DeclareMathOperator{\Sub}{Sub}
+\newcommand{\dcup}{\dot\cup}
 
 % % % % color note stuff
 %\newcommand{\marganote}[1]{\textcolor{gray}{#1}}
@@ -113,13 +117,19 @@
 \pagenumbering{arabic}
 \pagestyle{fancy}
 
-\chapter*{Preface}
+\section*{Preface}
 \input{./TeX_files/Vorwort}
-%\setcounter{0}
-\chapter{Einführung}
-\input{./TeX_files/chap1}
-\chapter{Permutationen und Permutationsgruppen}
-\input{./TeX_files/chap2}
+\setcounter{section}{-1}
+\section{Einführung}
+\input{./TeX_files/sec0}
+\section{Permutationen und Permutationsgruppen}
+\input{./TeX_files/sec1}
+\section{Gruppenwirkungen und Darstellungen (Satz von \person{Cayley})}
+\input{./TeX_files/sec2}
+\section{Erzeugendensysteme und SIMS-Ketten}
+\input{./TeX_files/sec3}
+\section{Automorphismen, invariante Relationen und die Sätze von Krasner}
+\input{./TeX_files/sec4}
 
 \part*{Anhang}
 \addcontentsline{toc}{part}{Anhang}

@@ -1,0 +1,421 @@
+Permutationen können unterschiedlich definiert und dargestellt werden:
+\begin{enumerate}
+	\item als Lineare Anordnung von Elementen einer Menge, z.B. $M = \set{a,b,c}$
+	\begin{align*}
+		\pi_1\colon abc &\qquad \pi_2 \colon acb\\
+		\pi_3 \colon bac &\qquad \pi_4 \colon bca\\
+		\pi_5 \colon cab &\qquad \pi_6\colon cba
+	\end{align*}
+	\item als bijektive Abbildung (in 2-Zeilen-Darstellung)
+	\begin{align*}
+		\pi_1 = \begin{pmatrix}
+			a & b & c\\
+			a & b & c
+		\end{pmatrix},\;
+	\pi_2 = \begin{pmatrix}
+		a & b & c\\
+		a & c & b
+	\end{pmatrix}, \dots, \pi_6 = ...
+	\end{align*}
+	allgemein
+	\begin{align*}
+		\pi = \begin{pmatrix}
+			a_1 & \dots &a_n\\
+			\vdots & & \vdots\\
+			a_{1i} & \dots & a_{1n}
+		\end{pmatrix}
+	\end{align*}
+	bezeichnen. Also Abbildung $\pi \colon M \to M$ mit $a_k \mapsto a_{i_k}$, wobei $M = \set{a_1, \dots, a_n}$ Reihenfolge der Spalten spielt keine Rolle.
+\end{enumerate}
+\begin{definition}
+	Eine \begriff{Permutation} auf Menge $M$ ist bejektiv Abbildung $f \colon M \to M$
+	\begin{align*}
+		S_m := S(M) := \text{Menge aller Permutationen auf }M
+	\end{align*}
+	Bezeichnung: für Bild $f(a)$ eines Elementes $a \in M$ $a^f$ also ist
+	\begin{align*}
+		f = \begin{pmatrix}
+			a_1 & \dots & a_n\\
+			a^f_1 &\dots & a^f_n
+		\end{pmatrix}
+	\end{align*}
+\end{definition}
+\begin{proposition}
+	Für $\abs{M} = n$ gibt $n!$ viele Permutationen auf $M$.
+	\begin{align*}
+		\abs{S_M} = n!
+	\end{align*}
+\end{proposition}
+\begin{proof}
+	Selbststudium!
+\end{proof}
+\begin{definition}
+	Der Graph einer Permutation
+	\begin{itemize}
+		\item $f\colon M \to M$
+		\item $f^{\cdot} = \set{(a,b) \in M^2 \mid a^f = b}$ \begriff{Graph} von $f$, Paare $(a,b)$ als gerichtete Kanten von $a$ nach $b$ zeichnen.
+		\item Graph $f^{\cdot}$ (genauer: $(M,f^{\cdot})$ hat Knotenpunktmenge $M$ und Knotenmenge $f^{\cdot}$
+	\end{itemize}
+\end{definition}
+\begin{example}
+	\begin{align*}
+		f = \begin{pmatrix}
+			1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13\\
+			3 & 5 & 7 & 12 & 2 & 9 & 4 & 11 & 8 & 1 & 6 & 12 & 10
+		\end{pmatrix}
+	\end{align*}
+	\chemfig{1*6(-3-7-4-13-10-)}\\
+	\chemfig{6*4(-9-8-11-)}
+	\[
+		% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRACYQBfU9TXfIRQBGclVqMWbAKzdxMKAHN4RUADMAThAC2SMiBwQkokACMYYKEgDMxHuq27EJw3urnLSACwBOLhS4gA
+		\begin{tikzcd}
+			2 \arrow[r, bend left] & 5 \arrow[l, bend left=49]
+		\end{tikzcd}
+		% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEYAmEAXypBhQA5vCKgAZgCcIAWyRkQOCPOoMIENETLjGcGPwZ0ARjAYAFTLnyFEISViEALHLwo8gA
+		\begin{tikzcd}
+		12 \arrow[loop, distance=2em, in=305, out=235]
+		\end{tikzcd}
+	\]
+Fakt Vorraussetzung $M$ endlich: Graph $f^{\cdot}$ einer Permutation $f$ ist ein Kreis (Zyklus) oder die Vereinigung  von paarweisen disjunkten Kreisen (Zyklen) (folgt aus Bijektivität) (Gilt nicht für unendliche Mengen $f \colon \Z \to \Z \mit x \mapsto x+1$)
+\end{example}
+Ab jetzt $M$ endlich.
+\begin{definition}
+	Die \begriff{Zyklendarstellung einer Permutation $f$} (entspricht ``lineares Aufschreiben von $f^{\cdot}$'')
+\end{definition}
+\begin{example}
+	$f$ wie oben
+	\begin{align*}
+		(1,3,7,4,13, 10)(2,5)(6,9,8,11)(12)	
+	\end{align*}
+\end{example}
+Falls $M$ fest, Zyklen der Menge 1 weglassen, das nennt man die \begriff{verkürtzte Zyklendarstellung}. \begriff{zyklische Permutation} := Permutation mit genau einem Zyklus in der verkürtzten Zyklendarstellung. Die identische Permutation $x \mapsto x$, Zyklendarstellung $(1)$.\\
+Beachte: $(abc),(bca),(cab)$ bezeichnen die selbe Permutation. (nur Reihenfolge, nicht Anfangselement wichtig)
+\begin{definition}
+	Die \begriff{Multipllikation} (Produkt) von Permutationen ist die Hintereinanderausführung von Abbildungen.
+	\[
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAFkQBfU9TXfIRQBGclVqMWbTjz7Y8BIgCYx1es1aIO3XiAzzBRMsPHqpWujrkDFI0ibWTNIOgD0AZlb38FQ5CocJDTY3YHcAcy5ucRgocPgiUHcAJwgAWyQyEBwIJFEQBjoAIxgGAAUfQy0GGHccEEdgrU9ZEBT0vOocpBUg8xBwr3aMxABmLtzEABYuuiwGNjS6NDhu1uGkGezJgFZZ+cXl1dyuCi4gA
+	\begin{tikzcd}
+		M \arrow[r, "f"]     & M \arrow[r, "g"]       & M      \\
+		a \arrow[r, maps to, "f"] & a^f \arrow[r, maps to, "g"] & a^{fg}
+	\end{tikzcd}
+	\]
+	Produkt $fg$ (oder $f;g$ oder $f\cdot g$, oder auch $g \circ g$) wird definiert durch 
+	\begin{align*}
+		a^{fg}:= (a^f)^g
+	\end{align*} 
+	ist wieder Permutation.
+\end{definition}
+\begin{example}
+	\begin{align*}
+		\begin{pmatrix}
+			1 & 2 &3\\
+			2 & 1 &3
+		\end{pmatrix}
+		\begin{pmatrix}
+			1 & 2 & 3\\
+			3 & 2 & 1
+		\end{pmatrix}=
+		\begin{pmatrix}
+			1 & 2 & 3\\
+			2 & 3 & 1
+		\end{pmatrix}
+	\end{align*}
+	\begin{itemize}
+		\item Zykeldarstellung: $(12)(3)\cdot (13)(2) = (123)$
+		\item verkürtzt: $(12)\cdot(13) = (123)$ 
+	\end{itemize}
+\end{example}
+Fakt: verkürtzte Zyklendarstellung $k$ Zyklen
+\begin{align*}
+	f = (--c_1--)(--c_2--)\dots (--c_3--)\\
+	g = (--c_i--)
+\end{align*}
+$g$ also Permutation zyklisch.
+Also haben wir
+\begin{align*}
+	f = g_1 \cdot g_2 \cdot \cdots \cdot g_k
+\end{align*}
+(Komposition)
+\begin{proposition}
+	Die Permutationen aus $S_M$ bilden mit der Multiplikation eine Gruppe. die volle symmetrische Gruppe vom Grad $\abs{M}$. (Einselement $(1)$ = identische Abbildung, inverse Abbildung $f^{-1}$ Zeilen in 2-Zeilendarstellung vertauschen. $(ab \dots xy)^{-1} = (yx\dots ba)$.
+\end{proposition}
+\begin{proof}
+	\sest
+\end{proof}
+\begin{remark}
+	Alle gruppentheoretische Begriffe sind auch für Permutationsgruppen definiert:Ordnung $\ord(f) = \min\set{m \mid f^m = e}$, Untergruppen, Normalteiler, konjugierte Elemente, usw.
+\end{remark}
+% 2nd lecture 3.11.2020
+\begin{definition}
+	Eine \begriff{Permutationsgruppe} $G$ von Grad $n$ ist eine Untergruppe der vollen symmetrischen Gruppe $S_M$ vom Grad $n$.\\
+	Bezeichnung: $(G,M)$ oder auch falls $G$ Untergruppe ist, $G \le S_M$. Wobei meist
+	\begin{align*}
+		M &= \set{0,1,\dots,n-1} =: n \implies S_n\\
+		M &= \set{1,2,\dots, n} =: \uline{n} \implies S_{\uline{n}}
+	\end{align*}
+\end{definition}
+\begin{remark}
+	Weitere Schreibweisen für $U,V \subseteqq S_M$, dabei
+	\begin{align*}
+		UV &= \set{uv \mid u\in U, v \in V}
+		\intertext{$a\in M, B\subseteqq M, g \in S_M$}
+		a^u &= \set{a^u \mid u \in U}\\
+		B^g &= \set{b^g \mid b \in B}\\
+		B^u & = \set{b^u \mid b \in B, u \in U}
+	\end{align*}
+\end{remark}
+\begin{proposition}[Gruppenkriterium]
+	Sei $M$ endlich. Dann ist $U \subseteqq S_M$ Gruppe genau dann, wenn $U\cdot U \subseteqq U$.
+\end{proposition}
+\begin{proof}
+	\sest
+\end{proof}
+\begin{example}
+	Symmetrieabbildung des Rechtecks in der Ebene
+%	\begin{center}
+%		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+%		
+%		\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%			%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+%			
+%			%Shape: Rectangle [id:dp8018685777285718] 
+%			\draw   (100,110) -- (159.83,110) -- (159.83,169.67) -- (100,169.67) -- cycle ;
+%			%Straight Lines [id:da9350361269288623] 
+%			\draw  [dash pattern={on 0.84pt off 2.51pt}]  (79.83,139.67) -- (179.83,139.67) ;
+%			%Straight Lines [id:da8951381985636013] 
+%			\draw  [dash pattern={on 0.84pt off 2.51pt}]  (129.5,90) -- (129.83,190.67) ;
+%			
+%			% Text Node
+%			\draw (161,95) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {2};
+%			% Text Node
+%			\draw (161.83,172.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {3};
+%			% Text Node
+%			\draw (90,97) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {1};
+%			% Text Node
+%			\draw (88,173) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {4};
+%			% Text Node
+%			\draw (124,70) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {II};
+%			% Text Node
+%			\draw (182,131) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {I};
+%			
+%			
+%		\end{tikzpicture}
+%		
+%	\end{center}
+können durch Permutation der Eckpunkte beschrieben werden. Also
+\begin{center}
+	\begin{tabular}{c|c}
+		Identitätsabbildung: & $(1) =: e$\\
+		\hline
+		Drehung 180°: & $(13)(24) =: g_1$\\
+		Spiegelung an I: & $(14)(23) =: g_2$\\
+		Spiegelung an II: & $(12)(34) =: g_3$  
+	\end{tabular}
+\end{center}
+Damit ist $G = \set{e,g_1,g_2,g_3}$ Permutationsgruppe und $G \cong$ Symmetriegruppe des Rechtecks in der Ebene.
+\begin{center}
+	\begin{tabular}{c|cccc}
+		$\cdot$ & $e$ 	& $g_1$ & $g_2$ & $g_3$\\
+		\hline
+		$e$   	& $e$   & $g_1$ & $g_2$ & $g_3$\\
+		$g_1$ 	& $g_1$ & $e$   & $g_3$ & $g_2$\\
+		$g_2$ 	& $g_2$ & $g_3$ & $e$   & $g_1$\\
+		$g_3$ 	& $g_3$ & $g_2$ & $g_1$ & $e$\\
+	\end{tabular}
+\end{center}
+das ist die \person{Klein}sche Vierergruppe, die isomorph zu $\Z_2 \times \Z_2$ ist.
+\end{example}
+\begin{definition}
+	Sei $(G,M)$ Permutationsgruppe, $a\in M$, dann definiere
+	\begin{enumerate}
+		\item Den \begriff{Stabilisator} von $a$
+		\begin{align*}
+			G_a := \set{g \in G \mid a^g = a}
+		\end{align*}
+		Allgemeiner haben wir 
+		\begin{align*}
+			G_{a_1, a_2, \dots, a_m} := \bigcap_{i=1}^m G_{a_i}.
+		\end{align*}
+		\item Die \begriff{Bahn} (1-Bahn, Orbit)
+		\begin{align*}
+			a^G := \set{a^g \mid g \in G}.
+		\end{align*}
+		Also ist der 1-$\Orb(G,M):=$ Menge aller 1-Bahnen (Andere Bezeichnung: $G\Vert M$).
+		\item $B \subseteq M$ \begriff{invariante Menge} (bezüglich $G$) $:\equival B^G \subseteqq B$ 
+		\item $G$ \begriff{transitiv} $\equival \exists a \in M \colon a^G = M$
+		\begin{*remark}
+			Äquivalent dazu sind:
+			\begin{align*}
+				\forall a \in M \colon a^G = M\\
+				\abs{1-\Orb(G,M)} = 1
+			\end{align*}
+		\end{*remark}
+	\end{enumerate}
+\end{definition}
+\begin{lemma}
+	Sei $G \le S_M, a \in M$. Es gilt:
+	\begin{lemmaenum}
+		\item $G_a$ ist Untergruppe von $G$. \label{lem_1.11_1}
+		\item $G_{a^g} = g^{-1}(G_a)g$ $(g \in G)$ \label{lem_1.11_2}
+		\item Durch $a \sim b \equival a^G = b^G$ ist eine Äquivalenzrelation gegeben und es gilt:
+		\begin{align*}
+			1-\Orb(G,M) = M/\sim
+		\end{align*}
+		Die menge aller 1-Bahnen bildet eine Zerlegung von $M$ (zwei Bahnen sind gleich oder disjunkt).\\
+		Beachte:
+		\begin{align*}
+			b \in a^G \equival a \in b^G \quad \text{ Sest!}
+		\end{align*}
+		\label{lem_1.11_3}
+		\item Jede invariante Menge $B \subseteqq M$ ist Vereinigung von 1-Bahnen
+		\begin{align*}
+			B = B^G = \bigcup_{b \in B} b^G
+		\end{align*}
+		\label{lem_1.11_4}
+	\end{lemmaenum}
+\end{lemma}
+\begin{proof}
+	\cref{lem_1.11_1} - \cref{lem_1.11_3} SeSt, \cref{lem_1.11_4} klar nach Definition!
+\end{proof}
+\begin{remark}
+	Repräsentatensystem einer Zerlegung $1-\Orb(G,M)$ heisst \begriff{Transversale}.
+\end{remark}
+\subsection*{Wiederholung Algebra}
+\begin{proposition}[Satz von \person{Lagrange}]\label{prop:lagrange}
+	Die Ordnung $\abs{U}$ jeder Untergruppe einer endlichen Gruppe $G$ ist Teiler der Gruppenordnung. Es gilt
+	\begin{align*}
+		\abs{G} = [G\colon U]\cdot \abs{U}
+	\end{align*}
+	(wobei $[\cdot\colon \cdot]$ der Index ist).
+\end{proposition}
+\begin{proof}
+	Index $[G\colon U] = \abs{G/U}$ = Anzahl $k$ der (rechts-)Nebenklassen $Ug$ in der Nebenklassenzerlegung.
+	\begin{align*}
+		G = U g_1 \cup U g_2 \cup \dots U g_k
+	\end{align*}
+	Dabei ist die Nebenklasse durch $Ug := \set{u\cdot g \mid u \in U}$ und $G/U := \set{Ug \mid g \in G}$ und wegen $\abs{U} = \abs{Ug}$ folgt \cref{prop:lagrange}.
+\end{proof}
+\begin{lemma}\label{lem:stab}
+	Sei $a \in M, G \le S_M$.
+	\begin{align*}
+		\begin{cases}
+			a^G &\to G/G_a\\
+			a^g &\mapsto G_a g
+		\end{cases}
+	\end{align*}
+	ist eine bijektive Abbildung zwischen Elementen der von $a$ erzeugten Bahn un den Nebenklassen nach dem Stabilisator $G_a$ gegeben.
+	\scyllanote{Insbesondere gilt:
+	\begin{align*}
+		\abs{a^G} = [G\colon G_a] = \abs{G/G_a}
+	\end{align*}
+	}
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		a^g = a^{g'} &\overset{\scyllanote{\equival}}{\implies} a= a^{g'g^{-1}}\overset{\scyllanote{\equival}}{\implies} g'g^{-1} \in G_a\\
+		&\overset{\scyllanote{\equival}}{\implies} g' \in G_a g\overset{\scyllanote{\equival}}{\implies} G_a g' = G_a g
+	\end{align*}
+	(letzte $\implies$ benutzt Nebenklassen gleich oder disjunkt)
+	\begin{itemize}
+		\item $\implies$ zeigt, dass $a^g \mapsto G_a g$ wohldefiniert ist
+		\item $\scyllanote{\Leftarrow}$ zeigt, dass $a^g \mapsto G_a g$ injektiv ist.
+		\item Surjektivität ist klar, da $g$ beliebig gewählt werden kann.
+	\end{itemize}
+\end{proof}
+Nun formulieren wie eine Folgerung, die \cref{prop:lagrange} und \cref{lem:stab}.
+\begin{conclusion}[Permutationsgruppentheoretische Umformulierung des \cref{prop:lagrange}]\label{folg:permu_langrange}
+	Für $a \in M$, $G \le S_M$ gilt:
+	\begin{align*}
+		\abs{G} = \abs{G_a} \cdot \abs{a^G}
+	\end{align*}
+\end{conclusion}
+\begin{proof}
+	\begin{align*}
+		\abs{G} \overset{\cref*{prop:lagrange}}&{=} [G\colon U]\cdot \abs{U} = [G \colon G_a]\cdot [G_a]\\
+		&= \abs{G/G_a}\cdot \abs{G_a} \overset{\cref*{lem:stab}}{=} \abs{a^G}\cdot \abs{G_a}
+	\end{align*}
+\end{proof}
+\begin{example}
+	Sei $G:= S_{\ul{4}}$, $1^G = \set{1,2,3,4}$ und $M = \ul{4} = \set{1,2,3,4}$, dann
+	\begin{align*}
+		\abs{G_1} \overset{\cref*{folg:permu_langrange}}&{=} \abs{G} / \abs{1^G} = 4! / 4 = 3! = 6 
+	\end{align*}
+	``Raten'' der Permutationen aus $G_1$ führt zu
+	\begin{align*}
+		G_1 = \set{(1), (23), (24), (34), (234), (243)}
+	\end{align*}
+	(mehr als 6 gibt es nicht!)\\
+	Iteration führt zu
+	\begin{align*}
+		\abs{G_{1,2}} &= \abs{G_1}:\abs{2^{G_1}} = 6:3 = 2\\
+		G_{1,2} &= \set{(1), (34)}\\
+		\abs{G_{1,2,3}} &= \abs{G_{1,2}}:\abs{3^{G_{1,2}}} = 2:2 = 1\\
+		G_{1,2,3} &= \set{(1)}
+	\end{align*}
+\end{example}
+\begin{definition}\label{sec1:def:similar}
+	Zwei Permutationsgruppen (bzw. Wirkungen, siehe 2.2) %TODO add reference later!
+	$(G,M)$ und $(H,N)$ heißen \begriff{ähnlich}, wenn eine bijektive Abbildung  
+	\begin{align*}
+		f\colon M \to N
+	\end{align*}
+	und ein Gruppenisomorphismus
+	\begin{align*}
+		\phi\colon G \to H
+	\end{align*} 
+	existieren, so dass gilt:
+	\begin{align*}
+		\forall a \in M, \forall g\in G\quad f(a^g) = f(a)^{\phi(g)}
+	\end{align*}
+	d.h. das Diagramm
+	\[
+	% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAFkQBfU9TXfIRQBGclVqMWbAHLdeIDNjwEio4ePrNWiELJ58lgomXXVNUnZy7iYUAObwioAGYAnCAFskZEDghJhfRA3TyQAZmo-JAAmM0ltYLkXdy9EUV9-RFiJLTYAHTy0AAssAAo7AEok4JTvSMyInIsQO2qQ1J8otLjcnWduCi4gA
+	\begin{tikzcd}
+		M \arrow[r] \arrow[d, "g"] \arrow[r, "f"] & N \arrow[d, "\phi(g)"] \\
+		M \arrow[r, "f"]                          & N                     
+	\end{tikzcd}
+	\]
+	ist kommutativ.
+\end{definition}
+\begin{*remark}
+	Durch $f$ und $G$ ist $\phi$ und $H$ vollständig festgelegt (folgt aus Diagramm)
+	\begin{align*}
+		y \in N \quad y^{\phi(g)} = g^{f^{-1}gf}\\
+		H = \set{\phi(g) \mid g \in G} = \set{f^{-1}gf \mid g \in G}
+	\end{align*}
+\end{*remark}
+Beachte: Ähnlichkeit impliziert Isomorphie, Äquivalenz gilt im Allgemeinen nicht!
+\begin{example}
+	\begin{enumerate}
+		\item $S_M$ ähnlich zu $S_N \implies \abs{M} = \abs{N}$
+		\item $(G,M) = (\set{e, (12)}, \set{(1,2)})$ ähnlich zu $(\set{e, (\alpha, \beta)}, \set{\alpha, \beta}) = (H,N)$ aber nicht ähnlich zu $(\set{e, (1,2)}, \set{1,2,3,4}) = (G',M')$, obwohl $G \cong G'$ (als Gruppen).
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	Ähnlichkeit und Konjugiertheit von Permutationen
+	\begin{enumerate}
+		\item zwei Permutationen $g_1, g_2 \in S_M$ heißen \begriff{ähnlich}, wenn in ihren Zyklendarstellungen gleich viele Zyklen, gleicher Länge vorkommen, z.B.
+		\begin{align*}
+			g_1 =& (1)(2)(345)(67)(89)\\
+			g_2 =& (3)(7)(149)(28)(56)\\
+				 & \scyllanote{(\cdot)(\cdot)(\cdot\cdot\cdot)(\cdot\cdot)(\cdot\cdot)}
+		\end{align*}
+		\item Sei $G \le S_M$, $g_2 \in S_M$ heißt \begriff{konjugiert} zu $g_1 \in G$, wenn ein $f \in G \scyllanote{\neq S_M}$ existiert, so dass $g_2 = f^{-1}g_1 f$.\\
+		Sprechweise: $g_1$ und $g_2$ sind konjugiert.
+	\end{enumerate}
+\end{definition}
+\begin{lemma} % L. 1.19
+	\begin{enumerate}
+		\item Konjugiertheit und Ähnlichkeit sind Äquivalenzrelation (in $S_{\ul{n}}$).
+		\item Aus der Zyklendarstellung
+		\begin{align*}
+			g = (a_1, a_2, \dots)(b_1, b_2, \dots)(\dots)\dots
+		\end{align*}
+		erhält man die Zyklendarstellung von $f^{-1}gf$ (für $f \in S_{\ul{n}}$), wenn $f$ auf jedes Element im Zyklus angewendet wird
+		\begin{align*}
+			f^{-1}gf = (a_1^f, a_2^f, \dots)(b_1^f, b_2^f, \dots)(\dots)\dots
+		\end{align*}
+		\item $g_1$ und $g_2$ konjugiert $\implies$ $g_1, g_2$ ähnlich (\scyllanote{$\Leftarrow$} im Allgemeinen nicht!), aber, wenn $g_1 \vee g_2$ konjugiert in $S_{\ul{n}}$ $\equival$ $g_1,g_2$ ähnlich
+		\item $g_1, g_2 \in S_{\ul{n}}$ ähnlich $\equival$ die erzeugte zyklische Untergruppe $(\gen{g_1},M)$ und $(\gen{g_2},M)$ sind ähnlich im Sinne von der Definition der Untergruppe (\cref{sec1:def:similar}).
+	\end{enumerate}
+\end{lemma}

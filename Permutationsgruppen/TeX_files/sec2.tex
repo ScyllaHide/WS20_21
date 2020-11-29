@@ -1,0 +1,198 @@
+% !TeX spellcheck = de_DE
+%10.11.2020
+\begin{definition}[Permutationsdarstellung]
+	\label{sec2:def:permudarstellung}
+	\begin{defenum}
+		\item Ein Homomorphismus
+		\begin{align*}
+			\psi\colon G \to S_M
+		\end{align*}
+		einer (abstrakten) Gruppe $G$ in eine symmetrische Gruppe $S_M$ heisst \begriff{Permutationsdarstellung} von $G$. (vom Grad $\abs{M}$)
+		\item $\psi$ \begriff{true}, falls $\psi$ injektiv.
+	\end{defenum}
+\end{definition}
+\begin{*remark}
+	$\psi$ ist treu $\equival$ $\ker \psi = \set{g \mid \psi(g) = e} = \set{e}$, mithilfe des Homomorphiesatz folgt $G \cong \Im \psi(G) = \psi[G] \le S_M$. ($G$ ist ``praktisch'' Permutationsgruppe.)
+\end{*remark}
+\begin{definition}
+	Sei $G = \gen{G, \cdot, ^{-1}, e}$ Gruppe, $M$ Menge. Eine Abbildung
+	\begin{align*}
+		\phi \colon \begin{cases}
+			M \times G &\to M\\
+			(x,g) &\mapsto xg = \phi(x,g)
+		\end{cases}
+	\end{align*}
+	heisst \begriff{Gruppenwirkung}(alt: Gruppenoperation, eng. group action) von $G$ auf Menge $M$, falls folgendes gilt:
+	\begin{enumerate}
+		\item $\phi(x,e) =xe_G = x \quad \forall x \in M$
+		\item 
+		\begin{align*}
+			(xg)g' &= x(g\cdot_G g')\\
+			\phi(\phi(x,g),g') &= \phi(x,g\cdot_G g')
+		\end{align*}
+	\end{enumerate}
+	Sprechweise: $G$ \ul{wirkt} (operiert, eng. acts) auf $M$\\
+	Schreibweise: $(G,M)$
+\end{definition}
+\begin{*remark}
+	Jede Permutationsgruppe $G \le S_M$ operiert auf natürliche Weise auf $M$
+	\begin{align*}
+		xg = \phi(x,g) = x^g
+	\end{align*}
+	(oft Schreibweise $x^g$ statt $\phi(x,g) \wedge xg$)
+\end{*remark}
+\begin{proposition}\label{sec2:prop:groupaction}
+	Jeder Gruppenwirkung
+	\begin{align*}
+		\phi\colon M\times G \to M
+	\end{align*}
+	entspricht in ein-eindeutiger Weise einer Permutationsdarstellung.\\
+	$\psi\colon G \to S_M$ und umgekehrt, und zwar gemäß
+	\begin{align*}
+		x^{\psi(g)} &= xg & (= \phi(x,g)\\
+		(x\in M, g\in G) &:= & \text{falls $\phi$ gegeben}\\
+		& := &\text{falls $\psi$ gegeben}
+	\end{align*}
+\end{proposition}
+\begin{proof}
+	\sest. (Hinweis: Es muss gezeigt werden, dass $\psi$ ein Gruppenhomomorphismus ist.)
+\end{proof}
+\begin{lemma}
+	\begin{lemmaenum}\label{sec2:lem:representation_permugroups}
+		\item Ist $G$ (abstrakte) Gruppe, so ist durch
+		\begin{align*}
+			h \in G\quad h^{\st{g}}
+		\end{align*}
+		(rechts-multiplikation mit $g$) für jedes $g \in G$ eine Permutation: $\st{g}\in S_{G}$ gegeben.\label{sec2:lem:reppermu:rimu}
+		\item $\psi\colon G \to S_G$ mit $g \mapsto \st{g}$ ist Permutationsdarstellung\label{sec:lem:reppermu:rep}
+		\item $\phi\colon (G\times G) \to G$ mit $(h,g) \mapsto hg$ (Produkt in Gruppe $G$) zugehörige Gruppenwirkung\label{sec2:lem:reppermu:groupact}
+		\item $\phi$ ist treu (und heißt \begriff{rechtsreguläre Darstellung} von $G$) \label{sec2:lem:actionfaithful}
+	\end{lemmaenum}
+\end{lemma}
+Folgerung aus \cref{sec2:lem:actionfaithful} (vergleiche Bemerkung zu \cref{sec2:def:permudarstellung}) ist
+\begin{conclusion}[Satz von \person{Cayley}]
+	Für eine beliebige Gruppe $G$ ist
+	\begin{align*}
+		\st{G} = \set{\st{g} \mid g \in G} \subset S_G
+	\end{align*}
+	eine zu $G$ isomorphe (da treu) Permutationsgruppe $(\st{G},G)$ heißt \begriff{rechtsreguläre Darstellung} von $G$.
+\end{conclusion}
+\begin{proof}[\cref{lem:representation_permugroups}]
+	\begin{itemize}
+		\item \cref{sec2:lem:reppermu:rimu} und \cref{sec:lem:reppermu:rep} folgen wegen \cref{sec2:prop:groupaction} aus 3)
+		\item zu zeigen \cref{sec2:prop:groupaction} für $\phi$
+		\begin{enumerate}
+			\item $\phi(h,g) = he = h$
+			\item $(hg)g^{-1} = h(gg^{-1})$ (assoziativ Gruppen der Gruppenmultiplikation)
+		\end{enumerate}
+		\item noch zu zeigen \cref{sec2:lem:reppermu:groupact}: Sei $\st{g}_1 = \st{g}_2$ (gilt unter $\psi$). Dann $h^{\st{g}_1} = h^{\st{g}_2}$ impliziert $\xRightarrow{h^{-1}} g_1 = g_2$. (Da $h^{-1} \cdot h = e$ gilt.)
+	\end{itemize}
+\end{proof}
+\begin{example}
+	Sei $G = S_3 = \set{g_1, g_2, g_3, g_4, g_5, g_6}$ mit $M = \set{1,2,3}$
+	\begin{align*}
+		\begin{matrix}
+			g_1 = e = (1) & g_2 = (12) & g_3 = (13)\\
+			g_4 = (23) & g_5 = (123)  & g_6 = (132)
+		\end{matrix}
+	\end{align*}
+	Multiplikationstafel (Cayley table)
+	%TODO fixxxx
+%	\[
+%	\begin{center}
+%		\begin{tabular}{c|cc|c|ccc}
+%			$\cdot$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ & $g_6$\\
+%			\hline
+%			$g_1$   & & & $g_3$ & & \\
+%			$g_2$ 	& & & $g_5$ & & \\
+%			$g_3$ 	& & & $g_1$ & & \\
+%			$g_4$ 	& & & $g_6$ & & \\
+%			$g_5$ 	& & & $g_2$ & & \\
+%			$g_6$ 	& & & $g_4$ & & \\
+%		\end{tabular}
+%	\end{center}
+%	\]
+	then we have: $\st{g}_i g \to gg_i$ wird durch die 3. Spalte des Cayleytafel beschrieben, d.h.
+	\begin{align*}
+		\st{g}_3 = \begin{pmatrix}
+			g_1 & g_2 & g_3 & g_4 & g_5 & g_6\\
+			g_3 & g_5 & g_1 & g_6 & g_2 & g_4
+		\end{pmatrix} = (g_1 g_3)(g_2 g_5)(g_3 g_1)
+	\end{align*}
+	Zyklenschreibweise.
+\end{example}
+\begin{*remark}
+	\begin{enumerate}
+		\item $G$ wirkt $S_{\ul{3}}$ auf $M = \set{1,2,3}$
+		\item $\st{G} = \st{S}_{\uline{3}}$ wirkt auf der Menge $S_{\uline{3}} = \set{g_1, \dots, g_6}$ d.h. ist Untergruppe der $S_G$, SeSt kein $\st{g} \neq e$ hat eine Fixpunkt
+		\item Jedes $\st{g}$ zerfällt in ein Produkt von Zyklen gleicher Menge $\ord(g)$, vgl. vorheriges Beispiel: $\ord(g_2) = 2$
+		\item $\st{G}$ hat Grad $\abs{G}$.
+		\item $\st{G}$ ist transitiv (d.h. gibt nur eine Bahn $e^{\st{G}} = G$)
+		\item Die EGS 2. und 5. charakterisieren die Regularität von $\st{G}$ (vgl 5.4) 
+	\end{enumerate}
+\end{*remark}
+\begin{example}[Weitere Beispiele von Gruppenwirkungen einer (abstrakten) Gruppe $G$]
+	\begin{enumerate}
+		\item Wirkung durch Konjugation (siehe Geometrie Kurs)
+		\begin{align*}
+			\phi \colon \begin{cases}
+				G \times G &\to G\\
+				(h,g) &\mapsto g^{-1}hg
+			\end{cases}
+		\end{align*}
+		zugehörige Permutationsdarstellung:
+		\begin{align*}
+			\psi \colon \begin{cases}
+				G &\to S_G\\
+				g &\to \psi(g)
+			\end{cases}\\
+		h^g = h^{\psi(g)} = g^{-1}hg
+		\end{align*}
+	\item Wirkung auf Untergruppen $U \subseteq G$ ($\Sub(G)$ Menge der Untergruppen von $G$)
+		\begin{align*}
+			\psi \colon \begin{cases}
+				\Sub(G) \times G &\to \Sub(G)\\
+				(U,g) &\to g^{-1}Ug
+			\end{cases}
+		\end{align*}
+	zugehörige Permutationsdarstellung
+	\begin{align*}
+		\phi \colon G \to S_{\Sub(G)}
+	\end{align*}
+	\item Wirkung auf rechte-Cosets $G/U$
+	\begin{align*}
+		U \subseteq G, G/U = \set{Uh \mid h \in G}\\
+		\phi \colon \begin{cases}
+			G/U \times G &\to G/U\\
+			(Uh,g) &\mapsto Uhg
+		\end{cases}\\
+	\phi \colon G \to S_{G/U}
+	\end{align*}
+	\end{enumerate}
+\end{example}
+\begin{example}[Wirkungen von Permutationsgruppen $(G,M)$ auf andere Mengen]
+	\begin{enumerate}
+		\item induzierte Wirkung $(G,\powerset(M))$ auf Potenzmenge $\powerset(M)$
+		\begin{align*}
+			\powerset(M) \times G &\to \powerset(M)\\
+			(B,g) &\mapsto B^g = \set{h^g \mid h \in B} 
+		\end{align*}
+		Einschränkung:
+		\item induzierte Wirkung $(G,\powerset_m(M))$ auf $m$-elementige Teilmenge
+		\begin{align*}
+			\phi\colon \begin{cases}
+				\powerset_m(M) \times G &\to \powerset_m(M)\\
+				(B,g) &\mapsto B^g \quad \abs{B} = m
+			\end{cases}
+		\end{align*}
+		Bezeichnung dieser Wirkung auch $(G^{m}, \powerset_m(M))$
+		\item induzierte Wirkung von $(G,M^m)$ auf $m$-Tupel d.h. auf $M^m$
+		\begin{align*}
+			\phi \colon \begin{cases}
+				M^m \times G &\to M^m\\
+				(a_1, \dots, a_m)^g &\mapsto (a_1^g, \dots, a_m^g)
+			\end{cases}
+		\end{align*}
+		Bezeichnung: $(G^{[m]}, M^m)$.
+	\end{enumerate}
+\end{example}
