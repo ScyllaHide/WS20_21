@@ -1,0 +1,46 @@
+% !TeX spellcheck = en_US
+This will answer a question from the remark in chapter 1, but this maybe takes a while, because we need some category theory first. So lets get started with a few things from \cite[p.~4]{Harder} and \cite{MacLane}.
+\section{Category Theory basics}
+\begin{definition}[category]
+	blabla
+\end{definition}
+\begin{example}
+	a few simple examples
+\end{example}
+\begin{definition}[functor]
+	do it
+\end{definition}
+Okay i assume a few definitions are clear already, like Category, Functor and some basic Categories like $\Pos, \Ab, \Vect_K, \Groups$, etc.
+We need $\Ens$ now, which is the category of all sets and functions within a (variable) set $V$.
+\subsection{Products, Projective Limits and Direct Limits in a Category}
+\subsubsection{Projective Limit}
+I need a category $\CC$ and an ordered set $(I,\le)$, then we can build something nice.
+\begin{example}
+	\proplbl{exm_order_set_cat}
+	We claim that $\EE =(I,\le)$ is a category.
+\end{example}
+\begin{proof}[\propref{exm_order_set_cat}]
+	To show that $\EE$ is a category, we need to check:
+	\begin{enumerate}
+		\item need $\Ob(\EE)$
+		\item need $\Morph(\EE)$
+		\item check compositions of $\EE$.
+	\end{enumerate}
+	then $\EE$ is a category (actual it is a (directed) $\Pos$ category?).
+\end{proof}
+Then we can start to build something towards the projective limit. ;) Lets collect a few things here
+\begin{itemize}
+	\item ...
+\end{itemize}
+\subsection{What is a Presheaf?}
+Take a topological space $X$ and define a category $\Open(X)$ of open sets. Name the sets $U,V \subset X$ and define the following morphism
+\begin{align*}
+	\Hom_{\Open(X)}(U,V) = \begin{cases}
+		\emptyset &\quad V \not\subset U\\
+		\set{i} &\quad i \text{ inclusion if } V \subset U.
+	\end{cases}
+\end{align*}
+Then we are ready to define the presheaf.
+\begin{definition}[Presheaf]
+	A \begriff{presheaf} on $X$ with values in a category $\CC$ is a contravariant function from $\Open(X)$ with values in the category $\CC$.
+\end{definition}

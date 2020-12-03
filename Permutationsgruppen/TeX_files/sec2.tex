@@ -170,22 +170,21 @@ Folgerung aus \cref{sec2:lem:actionfaithful} (vergleiche Bemerkung zu \cref{sec2
 	\end{align*}
 	\end{enumerate}
 \end{example}
-\begin{example}[Wirkungen von Permutationsgruppen $(G,M)$ auf andere Mengen]
-	\begin{enumerate}
+\begin{example}[Wirkungen von Permutationsgruppen $(G,M)$ auf andere Mengen]\label{sec2:exm:actions}
+	\begin{expenum}
 		\item induzierte Wirkung $(G,\powerset(M))$ auf Potenzmenge $\powerset(M)$
 		\begin{align*}
 			\powerset(M) \times G &\to \powerset(M)\\
 			(B,g) &\mapsto B^g = \set{h^g \mid h \in B} 
-		\end{align*}
-		Einschränkung:
-		\item induzierte Wirkung $(G,\powerset_m(M))$ auf $m$-elementige Teilmenge
+		\end{align*}\label{sec2:exm:action_a}
+		\item Einschränkung: induzierte Wirkung $(G,\powerset_m(M))$ auf $m$-elementige Teilmenge
 		\begin{align*}
 			\phi\colon \begin{cases}
 				\powerset_m(M) \times G &\to \powerset_m(M)\\
 				(B,g) &\mapsto B^g \quad \abs{B} = m
 			\end{cases}
 		\end{align*}
-		Bezeichnung dieser Wirkung auch $(G^{m}, \powerset_m(M))$
+		Bezeichnung dieser Wirkung auch $(G^{m}, \powerset_m(M))$ \label{sec2:exm:action_b}
 		\item induzierte Wirkung von $(G,M^m)$ auf $m$-Tupel d.h. auf $M^m$
 		\begin{align*}
 			\phi \colon \begin{cases}
@@ -193,6 +192,6 @@ Folgerung aus \cref{sec2:lem:actionfaithful} (vergleiche Bemerkung zu \cref{sec2
 				(a_1, \dots, a_m)^g &\mapsto (a_1^g, \dots, a_m^g)
 			\end{cases}
 		\end{align*}
-		Bezeichnung: $(G^{[m]}, M^m)$.
-	\end{enumerate}
+		Bezeichnung: $(G^{[m]}, M^m)$. \label{sec2:exm:action_c}
+	\end{expenum}
 \end{example}

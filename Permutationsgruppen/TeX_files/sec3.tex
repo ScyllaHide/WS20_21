@@ -1,7 +1,7 @@
 Problem: Beschreibung von Permutationsgruppen, Aufzählung aller Elemente ist nur selben möglich ($S_{\uline{100}} = 100 \implies 10^{100} \dots 10^{200}$)\\
 Aufzählung: Beschreibung als Automorphismusgruppen (siehe Kapitel 4 und 5) oder durch EZS.\\
 Wiederholung:
-\begin{definition}
+\begin{definition}\label{sec3:def:generatingset}
 	$U \subseteq G$ heißt \begriff{Erzeugendensystem} einer Gruppe $G :\equival$ jedes $g \in G$ ist als endliches Produkt $u_1, \dots, u_m$ mit $u_i \in U$ oder $u^{-1}_i \in U$ darstellbar.\\
 	Bezeichunung: $G = \langle u_i \rangle_G$.
 \end{definition}
@@ -53,6 +53,7 @@ Damit wäre die Speicherformel: $\sum_{i=1}^r \abs{T_i}$
 \end{definition}
 Bei Umnummerierung der Elemente entstehen möglicherweise kürzere Base. (Fixpunkte in Basis weggelassen)
 \begin{proposition}
+		\label{sec3:prop:sims_chain_unique}
 	Seien $G,T_i$ wie in \cref{sec3:def:sims_stuff}. Dann gilt
 	\begin{defenum}
 		\item Jede Permutation $g \in G$ lässt sich eindeutig in der Form
@@ -115,8 +116,7 @@ Bei Umnummerierung der Elemente entstehen möglicherweise kürzere Base. (Fixpun
 \end{*remark}
 \begin{conclusion}[Test $g \in G$, vergleiche Probleme (P1) vom Anfang des Kapitels]
 	Für $G \le S_M$ seinen eine SIMS-Basis $(a_1, \dots, a_r) \nd T_1, \dots, T_r$ bekannt (vergleiche \cref{sec3:def:sims_stuff}), $g \in S_M$ gegeben.\\
-	\newcommand{\ja}{\text{ ja}} \newcommand{\nein}{\text{nein}}
-	Algorithmus zum Testen, ob $g \in G$.
+	Algorithmus zum Testen, ob $g \in G$:
 	\begin{align*}
 		\begin{matrix}
 			\exists h_1 \in T_1 \colon a_1^{gh_1^{-1}} = a_1? & \xrightarrow{\nein} g \notin G\\
@@ -142,5 +142,165 @@ Bei Umnummerierung der Elemente entstehen möglicherweise kürzere Base. (Fixpun
 \end{proof}
 Problem: Wie findet man das Repräsentatensystem $T_1, \dots, T_r$ für die Untergruppen $U_1, \dots, U_r$, falls Erzeugendensystem $U$ gegeben
 \begin{align*}
-	G = \gen{U} \quad \text{ vergleiche (P3) und \cref}
+	G = \gen{U} \quad \text{ vergleiche (P3) unter \cref{sec3:def:generatingset}}
 \end{align*}
+(beachte, dass $T_1\dcup \dots T_r$ ist Erzeugendensystem für $U_{1\dots r}$)\\
+Antwort: Resultat von \person{Schreier} (Otto Schreier 1901 -1929)
+\begin{proposition}[\person{Schreirer}-Lemma]
+	\label{sec3:prop:schreier} Sei $G = \gen{U}$ mit $U = \set{g_1, \dots,g_n}$ (bzw. für endlich erzeugbare Gruppen $G$, also $\abs{G} = \infty$ sein.) $V \le G$ Untergruppe mit
+	\begin{align*}
+		G = Vh_1 \cup Vh_2 \cup \cdots \cup Vh_s \quad s\text{-cosets und oBdA }h_1 = e
+	\end{align*}
+	$T = \set{h_1, \dots, h_s}$ Repräsentatensystem für $G/V$. Für $g \in G$ sei $\phi(g) \in T$ der Repräsentant der Nebenklasse $Vg$ (d.h. $g \in Vg = V_{\phi(g)}$) Dann ist
+	\begin{align*}
+		X := \set{h_i g_j^{\scyllanote{k}}\phi(h_i g_j^{\scyllanote{k}})^{-1} \mid i \in \set{1,\dots,s}, g \in \set{1, \dots,m}}
+	\end{align*}
+	($\scyllanote{k \in \set{1,-1}}$ bei unendlichen Gruppen) ein Erzeugendensystem für die Untergruppe $V$.
+\end{proposition}
+\begin{*remark}
+	\begin{align*}
+		\scyllanote{k = \set{1,-1} \quad \text{$\;^{-1}$ ist
+		Inverse}}\label{sec3:remark:infty_groups}\tag{1}
+	\end{align*}
+\end{*remark}
+\begin{proof}
+	\begin{enumerate}
+		\item $X \subseteqq V$, dann
+		\begin{align*}
+			h_i g_j \in V\phi(h_i g_j) \implies h_i g_j \cdot \phi(h_i g_j)^{-1}
+		\end{align*}
+		\item $X$ ist Erzeugendensystem von $V$. Sei $g \in V \le G = \gen{U}$. Dann existiert Darstellung $g = g_{i_1}\cdots g_{i_t}$ (bei unendlichen Gruppen braucht man wieder $g^{-1}$ \scyllanote{vergleiche \eqref{sec3:remark:infty_groups}})
+		\begin{align*}
+			&\implies g = h_1 g_{i_1} \cdots g_{i_t} = \underbracket{h_1 g \phi(h_1 g_j)^{-1}}_{\ni X}\underbracket{\phi(h_1 g_1)}_{\exists \phi(g_1)h_{i_1}} g_{i_1}\dots g_{i_t}\\
+			&= \underbracket{\cdots}_{\in X}\underbracket{h_{j_1}g_{i_2}\phi(h_{j_1}g_{i_2})^{-1}}_{\in X}\underbracket{\phi(h_{j_1}g_{i_2})}_{\exists j_2 \colon \phi(h_{j_2}g_{i_2}) = h_{j_2}}g_{i_3} \cdots g_{i_t}\\
+			\overset{\text{usw.}}&{=}\underbracket{\qquad}_{\in X}\underbracket{\qquad}_{\in X}\dots\underbracket{\qquad}_{\in X}\underbracket{\phi \dots \phi^{-1}}_{\in X} \quad g \in V\\
+			\intertext{Sest noch einen Schritt}
+			&\implies \phi(hg) \in V 
+		\end{align*}
+		konkret folgt also, dass $g \in \gen{X}$.
+	\end{enumerate}
+\end{proof}
+\begin{example}
+	Sei $G := S_{\ul{n}}, V := A_{\ul{n}}$ (alternierende Gruppe der geraden Permutationen). Erzeugendensystem $g_1 := (12), g_2 := (12\dots n)$ (vergleiche \cref{sec3:remark:genSm_d}):
+	\begin{align*}
+		G = \gen{g_1, g_2}_{S_{\ul{n}}}
+	\end{align*}
+	Nebenklassenzerlegung mit Repräsentaten $h_1 :=e = (1), h_2 := (12)$:
+	\begin{align*}
+		S_{\ul{n}} = Vh_1 \dcup Vh_2 = A_{\ul{n}} \dcup A_{\ul{n}}(12)
+	\end{align*}
+	$\xRightarrow{\cref{sec3:prop:schreier}} A_{\ul{n}}$ wird erzeugt von
+	\begin{align*}
+		h_1 g_1 \phi(h_1 g_1)^{-1} &= e \cdot (12) \cdot (12) = e\\
+		h_1 g_2 \phi(h_1 g_2)^{-1} &= \begin{cases}
+			e \cdot (12\dots n) \cdot (12) = (23\dots n) &\quad \text{falls $n$ gerade}\\
+			e \cdot (12\dots n) \cdot e = (213\dots n) &\quad \text{falls $n$ ungerade}
+		\end{cases}\\
+		h_2 g_1 \phi(h_2 g_1)^{-1} &= (12) \cdot (12) \cdot e = e\\
+		h_2 g_2 \phi(h_2 g_2)^{-1} &= \begin{cases}
+			(12) \cdot (12\dots n) \cdot (12) = (213\dots n) &\quad \text{falls $n-1$ gerade}\\
+			(12) \cdot (12\dots n) \cdot e = (134\dots n) &\quad \text{falls $n-1$ ungerade}
+		\end{cases}
+	\end{align*}
+	(wobei $(12) \cdot (12\dots n) = (134 \dots n)$). Also erhält man folgendes Erzeugendensystem für $A_{\ul{n}}$:
+	\begin{align*}
+		A_{\ul{n}} = \begin{cases}
+			\gen{(234\dots n),(134\dots n)}_{S_{\ul{n}}} &\quad \text{falls $n$ gerade}\\
+			\gen{(123\dots n),(213\dots n)}_{S_{\ul{n}}} &\quad \text{falls $n$ ungerade}
+		\end{cases}
+	\end{align*}
+\end{example}
+\begin{remark}
+	\label{sec3:remark:genSm} Erzeugendensysteme der $S_{\ul{m}}$: folgende Mengen erzeugen $S_{\ul{m}}$:
+	\begin{remarkenum}
+		\item $\set{(ij)\mid i,j \in N}$ alle Transpositionen \label{sec3:remark:genSm_a}
+		\item $\set{(12), (23), \dots, (n-1,n)}$ spezielle Transposotionen \label{sec3:remark:genSm_b}
+		\item $\set{(12),(13),(14), \dots, (1n)}$ spezielle Transpositionen \label{sec3:remark:genSm_c}
+		\item $\set{(12),(12\dots n)}$ \label{sec3:remark:genSm_d}
+	\end{remarkenum}
+\end{remark}
+\begin{proof}[\cref{sec3:remark:genSm}]
+	\item zu \cref{sec3:remark:genSm_a}: Für Zyklen gilt:
+	\begin{align*}
+		(a_1 \dots a_k) = (a_1 a_2)(a_1 a_3)\dots (a_1 a_k) \quad \text{ SeSt!}		
+	\end{align*}
+	Jede Permutation ist Produkt von Zyklen (siehe Geometrie Fehm).
+	\item \cref{sec3:remark:genSm_b} - \cref{sec3:remark:genSm_b} SeSt!
+\end{proof}
+\begin{*remark}
+	Zerlegung in Transpositionen nicht eindeutig (im Gegensatz zu SIMS-Ketten-Zerlegung \cref{sec3:prop:sims_chain_unique}), aber es gibt gewisse Invarianten
+\end{*remark}
+%TODO Could be something else than a definition, maybe a def and some kind of props of this /sgn-function
+\begin{definition}[gerade und ungerade Permutationen]
+	Sei $g \in S_{\ul{n}}$. Eine \begriff{Inversion} von $g$ ist ein Paar $(i,j)$ mit $1\le j \le n$ und $i^g > j^g$. zum Beispiel
+	\begin{align*}
+		\begin{pmatrix}
+			1 & 2 & 3 & 4\\
+			2 & 1 & 4 & 3
+		\end{pmatrix} = (12)(34)
+	\end{align*}
+	hat zwei Inversionen: $1 < 2$, $3 < 4$.
+	\begin{align*}
+		\begin{pmatrix}
+			1 & 2 & 3\\
+			3 & 2 & 1
+		\end{pmatrix} = (13)(2)
+	\end{align*}
+	hat die Inversionen: $1 < 2$, $2 < 3$, $1 < 3$.
+	(=Anzahl der Vertauschungen von Nachbarn in der zweiten Zeile, um daraus 1. Zeile zu bekommen)
+	Definiere \begriff{Signum}:
+	\begin{align*}
+		\sgn(g) := \begin{cases}
+			1 &\quad \text{ falls \# Inversionen gerade}\\
+			-1 &\quad \text{ falls \# Inversionen ungerade}\\
+		\end{cases}
+	\end{align*}
+	$g$ heißt dann \begriff{gerade} bzw. \begriff{ungerade Permutation}.\\
+	Es gilt:
+	\begin{defenum}
+		\item \begin{align*}
+			\sgn(g) = \prod_{\stackrel{i<j}{i,j \in \ul{n}}} \frac{j^g - i^g}{j-1} = \prod_{i<j} \frac{j^{gh}-i^{gh}}{j^h - i^h}
+		\end{align*}
+		(für beliebige Permutation $h$)
+		\begin{proof}
+			Jede Inversion liefert (-1) im Zähler. Beim Aufsetzen einer Permutation $h$ wird genau dann im Produkt der Zähler ein Vorzeichen geändert, wenn auch Änderung im Nenner.
+		\end{proof}
+		\item $\sgn(gh) = \sgn(g) \cdot \sgn(h)$, denn
+		\begin{align*}
+			\sgn(g)\cdot \sgn(h) &= \prod_{i<j}\frac{j^g-i^g}{j-i}\prod_{i<j}\frac{j^h - i^h}{j-i}\\
+			&= \frac{j^{gh} - i^{gh}}{j^h - i^h} \cdot \frac{j^h - i^h}{j-1}\\
+			&= \frac{j^{gh}-i^{gh}}{j-1}\\
+			&= \sgn(gh)
+		\end{align*} \label{sec3:def:oddevenperm_b}
+		\item $\sgn(e) = 1, \sgn(g^{-1}) = \sgn(g)$ (denn $1 = \sgn(g\cdot g^{1}) = \sgn(g)\cdot \sgn(g^{-1})$) \label{sec3:def:oddevenperm_c}
+		\item $\sgn \colon S_{\ul{n}} \to \set{1,-1}$ ist Homomorphismus auf der multiplikativen Gruppe $\gen{\set{1,-1}, \cdot}$
+		\item Die geraden Permutationen bilden Untergruppe (wegen \cref{sec3:def:oddevenperm_b}, \cref{sec3:def:oddevenperm_c} =: die alternierende Gruppe $A_{\ul{n}}$ von $S_{\ul{n}}$) \label{sec3:def:oddevenperm_e}
+		\item $g \in S_{\ul{n}}$ gerade (bzw. ungerade) $\equival$ Für jede Darstellung $g = t_1,\dots,t_q$ als Produkt von Transpositionen ist $g$ gerade (bzw. ungerade)\label{sec3:def:oddevenperm_f}
+		\begin{proof}[\cref{sec3:def:oddevenperm_f}]
+			\begin{align*}
+				g &= t_1\dots t_q\\
+				e &= t_1 \dots t_q \dots t_1 = s\cdot t_1\dots t_q\\
+				e &= s\cdot t_1\dots t_q = s(-1)\cdot t_{q-1}\dots t_1\\
+				e &= s(-1)\cdot t_{q-1}\dots t_1 = s(-1)^q = 1
+			\end{align*}
+		\end{proof}
+	\end{defenum}
+\end{definition}
+Daraus folgt:
+\begin{proposition}
+	Die alternierende Gruppe $A_{\ul{n}} \le S_{\ul{n}}$ besteht aus allen Permutation, die sich als Produkt einer geraden Anzahl von Transpositionen darstellen lassen.\\
+	$A_{\ul{n}}$ ist Normalteiler in $S_{\ul{n}}$ und enthält $\sfrac{n!}{2}$ Elemente.
+\end{proposition}
+\begin{proof}
+	\begin{itemize}
+		\item erster Teil: \cref{sec3:def:oddevenperm_f}
+		\item zweiter Teil: Homorphiesatz für $\sgn \colon S_{\ul{n}} \to \set{1,-1}$ (vergleiche \cref{sec3:def:oddevenperm_e})\\
+		\begin{align*}
+			\ker (\sgn) &= \set{g \mid \sgn(g) = 1} = A_{\ul{n}}\\
+			\abs{S_{\ul{n}/A_{\ul{n}}}} &= \frac{\abs{S_{\ul{n}}}}{\abs{A_{\ul{n}}}} = 2
+		\end{align*}
+	\end{itemize}
+\end{proof}
+\begin{remark}
+	$A_{\ul{n}}$ ist einfach für $n \le 5$ (keine Normalteiler). Daraus folgt direkt $S_n$ ist für $n \ge 5$ nicht auflösbar. (siehe Fehm Geometrie Skript)
+\end{remark}

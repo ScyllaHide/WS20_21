@@ -1,0 +1,92 @@
+% !TeX spellcheck = en_US
+\section{Topological Manifolds}
+Lets recap a few definitions first, then we can define what a topological manifold is:
+\begin{erinnerung}
+	\begin{enumerate}
+		\item topology on a set $M$ is a collection $\tau$ of  of subsets of $M$ we have the following
+		\begin{enumerate}
+			\item $\emptyset, M \in \tau$
+			\item $\bigcup_{i=1}^{\infty} O_i \in \tau$ (infinite)
+			\item $\bigcap_{i=1}^n O_i \in tau$
+		\end{enumerate}
+		then the pair $(M,\tau)$ is called topological space.
+		\begin{itemize}
+			\item Then we can define a subset $U \subset M$ is an open set if it belongs to the topology $\tau$.
+			\item A neighborhood $U \in \tau$ of a point $p \in M$, contains simply $p \in M$.
+			\item Closed set $F \subset M$, where the complement $M \setminus F = F^C$ is open.
+			\item interior $\int A$ largest open set contained in $A$
+			\item closure $\bar{A}$ smallest closed set containing $A$
+			\item subset topology on $A\subset M$ is $\tau_A := (U \cap A)_{U \in \tau}$
+		\end{itemize}
+	\item quotient topology: quotient space $M\setminus sim$, where $\sim$ is an equivalence relation.
+	define canonical projection $\pi\colon M \to M\setminus \sim$, the quotient topo is then, be letting $V \subset M\setminus \sim$ be open iff $\pi^{-1}(V) \subset M$ is open in $M$.
+	\item product topology: 
+	\end{enumerate}
+\end{erinnerung}
+\begin{definition}[topological manifold]
+	M of dimension $n$ is a topological space with properties
+	\begin{defenum}
+		\item $M$ is Hausdorff for all $p_1\neq p_2 \in M$ there exists nbhs $V_1(p_1), V_2(p_2)$ st. $V_1 \cap V_2 = \emptyset$.\label{chap1_1:def:topomf:haus}
+		\item $\forall p \in M,\phi\colon V(p) \subset M \to U_O \subset \R^n$ ($U_O$ open subset).\label{chap1_2:def:topomf:nbh}
+		\item $M$ has second countability axiom, this means $M$ has countable basis for its topology.\label{chap1_2:def:topomf:basis}
+	\end{defenum}
+\end{definition}
+\begin{example}[topological manifolds]
+	\begin{expenum}
+	\item $M \ubset \R^n$, then $(M,\tau_U)$ topological space, $U \subset M$ open iff $M\cap V = U$, $V_O \subset \R^n$.
+	\item circle has dimension $n=1$
+	\begin{align*}
+		S^1 = \set{(x,y) \in \R^2 \mid x^2 + y^2 = 1},
+	\end{align*}
+	\cref{chap1_1:def:topomf:haus}, \cref{chap1_2:def:topomf:basis} inherited from ambient space $\R^2$. For \cref{chap1_2:def:topomf:nbh} we get a homeomorphism $\phi \colon U(p) \subset S^1 \to T \subsetset \R$, here $T$ open interval, choose the nbh $U(p)$ in such a way that the normal $n_p$ on this point is not parallel to a coordinate axis, then this projection is the needed homeomorphism. We basically bend (homeo) the nbh $U(p)$ on $S^1$, such that we have an open interval in $\R$. \scyllanote{Why we need the normal-part?}
+	This can be generalized to $S^2$ (dimension $n=2$).
+	\item surface of cube is topo mf its homeomorphic to $S^2$
+	\end{expenum}
+\end{example}
+The next few examples use identification of a square.
+\begin{example}
+	\begin{expenum}
+		\item Torus $\TT^2$ quotient of unit square $Q=[0,1]^2 \subset \R^2$ with equivalence relation(ER)
+		\begin{align*}
+			(x,y) \sim (x+1,y) \sim (x,y+1)
+		\end{align*}
+		with quotient topology.
+		%TODO explain this a lil better ...
+		\item\person{Klein} bottle $K^2$ quotient of $Q$ with ER
+		\begin{align*}
+			(x,y) \sim (x+1,y) \sim (1-x,y+1)
+		\end{align*}
+		\item projective place $\R P^2$ quotient of $Q$ by ER
+		\begin{align*}
+			(x,y)\sim (x+1,1-y) \sim (1-x,y+1)
+		\end{align*}
+	\end{expenum}
+\end{example}
+\begin{*example}
+	the \person{Möbius}-strip is a topo mf with boundary.
+\end{*example}
+\begin{definition}[closed half space, topo mf with boundary, interior pts, bounary pts]
+	%TODO here is not clear what \partial\HH^n?
+\end{definition}
+\section{Differential Manifolds}
+%TODO
+\section{Differentiable Maps}
+%TODO
+\section{Tangent Space}
+%TODO
+\section{Immersions and Embeddings}
+%TODO
+\section{Vectors Fields}
+%TODO
+An example to understand the interaction between vector fields, 1-parameter diffeomorphism group and local flow.
+\begin{*example}
+	Haben wir ein Vektorfeld $X$ auf $M$, für dass global ein Fluss $F:M \times (-\epsilon,\epsilon)\to M$ existiert, so gilt natürlich $F(x,0)=x$, also $F(0,\bullet)=\id_M$ ist ein Diffeomorphismus von $M$. Daher gilt auch auf einer kleinen Umgebung $U$ von 0, dass $F(x,u)$ für $u$ in $U$ ein Diffeomorphismus auf $M$ ist. Dann sieht man aber leicht ein, dass jedes $F(t,\bullet)$ als Komposition endlich vieler Faktoren $F(u,\bullet)$ geschrieben werden (mit $u$ in $U$). Daher ist $F(t,\bullet)$ für alle $t$ definiert und für alle $t$ ein Diffeomorphismus auf $M$. Wir erhalten also einen Homomorphismus $\R\to\Diffeo(M)$.\\
+	Die Diffeomorphismengruppe $Diff(M)$ einer Mannigfaltigkeit ist einfach die Gruppe aller Diffeomorphismen $f\colon M\to M$ mit Komposition. $Diff(M)$ wirkt auf $M$.\\
+	Ein einfaches Beispiel einer 1-Parameter-Untergruppe einer Diffeomorphismengruppe ist das folgende: Sei $M=\R$ und $X=1$ das Vektorfeld, das konstant 1 ist. Dann ist der zugehörige Fluss zu $X$: $F(x,t)=x+t$. Man sieht leicht, dass $F(F(x,t),s)=F(x,t+s)$.
+\end{*example}
+\section{Lie Groups}
+%TODO
+\section{Orientability}
+%TODO
+\section{Manifolds with Boundary}
+%TODO

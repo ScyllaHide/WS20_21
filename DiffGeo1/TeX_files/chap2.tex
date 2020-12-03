@@ -1,0 +1,181 @@
+% !TeX spellcheck = en_US
+\section{Topological spaces}
+Collect stuff for the set-theoretic topology, to describe manifolds.
+\begin{definition}[Topology]
+	\proplbl{def_topology}
+	$X$ is set and we define a collection $\tau$ of (open) subsets $U \subset X$. Then the pair $(X,\tau)$ is called topological space, if the following properties hold
+	\begin{itemize}
+		\item[(T1)] $X,\emptyset \in X$
+		\item[(T2)] $\bigcup_{i \in I} U_i \in \tau$ ($I$ is index set and $\abs{I} \le \infty$)
+		\item[(T3)] $\bigcap_{\stackrel{i \in J}{J\subsetneq I}}U_i \in \tau$ (finite, such that $\abs{J} < \infty$)
+	\end{itemize}
+\end{definition}
+From now on $X$ abbreviation for topological space $(X,\tau)$.
+\begin{*remark}
+	\begin{itemize}
+		\item Sometimes it is convenient \propref{def_topology} also to formulate with closed sets! (This is left for the reader.)
+		\item easy examples of topo spaces are $(X,d)$ are metric spaces with $X = \Rn, \C^n$, etc (norms are equivalent on finite dimensional spaces. See ANAG 2017/2018)
+	\end{itemize}
+\end{*remark}
+\begin{definition}[HAUSDORFF space, compact space]
+	\proplbl{def_hausdorff} %TODO find out how to ref enumeration points :D
+	\begin{defenum}
+		\item $X$ is \begriff{hausdorff} if every open pair of points can separated by disjoint open neighborhoods, short
+		\begin{align*}
+		\forall x,y \in X, x\neq y \colon \exists U,V \open\colon U \cap V \neq \emptyset
+		\end{align*}
+		\item If $X$ is hausdorff, then we can define compactness, such that if every open cover has a finite subcover, such that
+		\begin{align*}
+			\bigcup_{i \in I} U_i \subseteq X, U_i \open \implies \exists i_i,\dots, i_n \in I \with \bigcup_{k=1}^n U_{i_k} \subseteq X
+		\end{align*} 
+	\end{defenum}
+\end{definition}
+\begin{definition}[topological base]
+	\proplbl{def_topo_base}
+	A system $\BB \subseteq \tau$ of open sets has a topological base, if every $U \in \tau$ can be realized as union of $U = \bigcup_{i \in I} B_i \with B_i \in \BB$.
+\end{definition}
+\begin{*remark}
+	Well iv have seen here three axioms, have to check if these are already covered. Okay these are not axioms, it is how u can construct aa $\tau$ from a base u already have.
+\end{*remark}
+\begin{definition}[Second countable axiom]
+	\proplbl{def_2nd_countable}
+	$X$ is second countable or has the second countable property if the base $\BB$ is a countable (topoogical) base.
+\end{definition}
+\begin{example}
+	Take the euclidean space $(\Rn, \tau)$ with its neighborhoods, then $\BB = \set{B_r(x) \mid x\in \Q^n, r \in \Q_{>0}}$ is a base and $(\Rn, \tau)$ is second countable.
+\end{example}
+\begin{definition}[$n$-dimensional topological manifold]
+	Let $n \in \N$ non negative, $X$ has properties % dimension?! see karoubi? ohh well we look at \R^n stuff :o well that was the dim-definition for vb
+	\propref{def_2nd_countable} and  \ref{def_hausdorff}, then we have an additional property and call it \begriff{$n$-topological manifold} $M$, that every $p \in M$ ($U \subseteq M$ open) is homeomorphic to $\Rn$.
+\end{definition}
+\begin{*remark}
+	\begin{itemize}
+		\item What means homeomorphic? $\exists \chi \colon U \to \Rn$ continuous, bijective, such that $\chi^{-1}\colon \Rn \to U$ also continuous.
+		\item What happens if we replace $\Rn$ with $\C^n$? See \cite[p.~39]{Harder} for that.
+		\item equivalent formulation for something?
+		\item emphasize the definition of dimension, see remark above.
+	\end{itemize}
+\end{*remark}
+\begin{definition}[differentiable atlas]
+	Let $M$ be topological manifold with dimension $n$. A differentiable atlas $A$ on $M$ is an indexed collection ($(U,\chi)$ is a chart)
+	\begin{align*}
+		\AA = \set{(U_{\alpha},\chi_{\alpha})_{\alpha \in I} \mid U \subseteq M \open, \chi\colon U \overset{\cong}{\to} \Rn \text{ homeomorphism}}
+	\end{align*}
+	with the following properties
+	\begin{enumerate}
+		\item $M$ is covered by $U_{\alpha}$, such that $M = \bigcup_{\alpha \in I} U_{\alpha}$
+		\item transition map between two charts is smooth: 
+		\begin{align*}
+			(U_{\alpha}, \chi_{\alpha}), (U_{\beta},\chi_{\beta}) \in \AA, U_{\alpha}\cap U_{\beta} \neq \emptyset
+		\end{align*}
+		and this implies 
+		\begin{align*}
+			\chi_{\alpha, \beta} = \chi_{\beta} \circ \chi_{\alpha} \colon \chi_{\alpha}(U_{\alpha}^{-1} \cap U_{\beta}) \to \chi_{\beta}(U_{\alpha} \cap U_{\beta})
+		\end{align*}
+		is smooth.
+	\end{enumerate}
+\end{definition}
+% maybe create a figure here, eg https://en.wikipedia.org/wiki/Atlas_(topology)#/media/File:Two_coordinate_charts_on_a_manifold.svg
+\begin{definition}[equivalent, compatible atlantes]
+	Two atlantes $\AA, \AA'$ are \begriff{equivalent}, \begriff{compatible}, if $\AA \cup \AA'$ is also an atlas. This means
+	\begin{align*}
+		\forall (U_{\alpha},\chi_{\alpha}) \in \AA, (U_{\beta},\chi_{\beta}) \in \AA', U_{\alpha} \cap U_{\beta} \neq \emptyset\colon \chi_{\beta} \circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(U_{\alpha}\cap U_{\beta}) \to \chi_{\beta}(U_{\alpha} \cap U_{\beta})
+	\end{align*}
+	is smooth.
+\end{definition}
+\begin{example}
+	\begin{itemize}
+		\item Well we could take a look at the $\SS^1$ here and create two atlantes $\AA\nd \AA'$ and then think about when $\AA \sim \AA'$?
+		\begin{itemize}
+			\item representation of $\SS^1$ in polar coordinates and then define two ways to cover $\SS^1$.
+			\item Of course we have $\AA \cup \AA'$ is again an atlas, maybe ``throw some charts away''
+			\item we need to find those $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ and prove these are smooth again. % well \chi_i are already there, might need a drawing for that.
+			
+		\end{itemize}
+		\item here is a not example, when the $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ are not smooth? 
+		Okay lets write these two atlantes down.
+		\begin{align*}
+			\AA &:= \set{(\R, \id \colon \R \to \R)}\\
+			\AA' &:= \set{(\R, \sqrt[3]{\cdot}\colon \R \to \R)}
+		\end{align*}
+		the culprit is probably $\sqrt[3]{\cdot}$ is not smooth and therefore $\sqrt[3]{\id^{-1}}$ is not smooth. % maybe here? https://math.stackexchange.com/questions/1167558/cube-root-function-not-differentiable
+		\item is this fixable by remove points or restrict?
+	\end{itemize}
+\end{example}
+\section{Smooth Manifolds}
+\begin{definition}
+	A smooth (= differentiable) manifold $M$ is a topological space together with an equivalence class of atlantes (a ``smooth structure''). We can write this as $(M,~)$.
+\end{definition}
+From now on, we assume all manifolds have the property to be smooth!
+\begin{example}
+	Here is a bunch of manifolds ... %TODO type them.
+	\begin{enumerate}
+		\item 
+		\item 
+		\item 
+		\item 
+		\item 
+		\item 
+	\end{enumerate}
+\end{example}
+\section{Smooth Maps}
+\begin{definition}
+	Let $N,M$ two manifolds. A map $f\colon M \to N$ is smooth, if for every pair $(U,\chi) \nd (V,\psi)$ on $M$, $N$ holds: $\psi \circ f \circ \chi$ smooth
+	\[
+		% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAFUACAHW7ibRwYOGAEdOAWRABfUuky58hFACZyVWoxZsAcjz5MARkJHiAajLkgM2PASJqAjBvrNWiELwBKAPQC2lvK2SkRkztSu2h7ePoTSGjBQAObwRKAAZgBOEAGIZCA4EEiOEVruIOmBFdm5JQVFiGqabmy8glhVWTlI+YVIAMylLdHcAMYAFh2yGTUD1H2NQ1Ge3O36o1iZo5zp65vbvBNYPsAAtI7SMhTSQA
+		\begin{tikzcd}
+			U \supseteq M \arrow[rr, "f"] \arrow[d, "\chi"] &  & N \subseteq V \arrow[d, "\psi"] \\
+			\R^n \arrow[rr, "\psi \circ f \circ \chi^{-1}"] &  & \R^m                           
+		\end{tikzcd}	
+	\]
+\end{definition}
+\begin{*remark}
+	\begin{itemize}
+		\item This means a map is smooth, if the map is smooth in local coordinates.
+		\item notation: $c^{\infty}(M,N) := \set{f\colon M \to N \text{ smooth}}$, $C^{\infty} := C^{\infty}(M, \R)$
+		\item composition of smooth maps is smooth again (check)
+		\item $C^{\infty}$ is $\R$-Algebra, sums, multiples of smooth maps is smooth again (check)
+	\end{itemize}
+\end{*remark}
+\begin{definition}
+	A smooth map $f\colon M \to N$ is called \begriff{diffeomorphism} if $\exists g \colon N \to M$ smooth
+	\begin{align*}
+		g \circ f = \id_M \nd f \circ g = \id_N
+	\end{align*}
+	If exists a diffeomorphism $f \colon M \to N$, then we call $M,N$ diffeomorphic, which note by
+	\begin{align*}
+		M \cong N, M \xrightarrow[f]{\cong} N
+	\end{align*}
+\end{definition}
+\begin{*remark}
+	is be diffeomeorphic an equivalence relation?
+\end{*remark}
+then we list a few simple examples to illustrate
+\begin{example}
+	\begin{itemize}
+		\item $(\R, \AA_1 = \set{(\R, \id)}) \cong (\R, \AA_2 = \set{(\R, \sqrt[3]{\cdot})})$ compare that $\AA_1 \nd \AA_2$ are not equivalent atlantes.
+		\item $B_1(0) \cong \R^n$ with $x \mapsto \tan(\pi/2 \norm{x})\cdot x$
+		\item two atlantes $\AA_1,\AA_2$ on $M$ are equivalent, if
+		\begin{align*}
+			\id \colon (M,\AA_1) \to (M,\AA_2)
+		\end{align*}
+		is a diffeomorphism and $\id^{-1}$ too.
+	\end{itemize}
+\end{example}
+\section{tangent space and tangent bundle}
+\begin{definition}[tangent space]
+	Let $p \in M$. \begriff{tangent space} of $M$ at $p$ is defined as the space of derivations of $C^{\infty}(M)$ on $p$
+	\begin{align*}
+		T_p M := \set{ \der\colon C^{\infty}(M) \to \R \mid \der \text{ linear, }\der(fg) = f(p)\der(g) + g(p)\der(f)}
+	\end{align*}
+\end{definition}
+\begin{proposition}
+	Inclusion map $i\colon Z \hookrightarrow M$ induces an isomorphism $\pull{\pull{i}} \colon T_p U \to T_p M \with \der \circ \pull{i}$. Here is $\pull{i} \colon C^{\infty}(M) \to C^{\infty}(U)$ the pullback map, see \propref{def_pullback_map}.
+\end{proposition}
+\begin{proof}
+	Analog to proof of \propref{prop_isobtwTS}, construct cutoff function in $\chi(U) \subseteq \R^n$ and transport on $U$.
+\end{proof}
+\begin{conclusion}
+	If $\dim M = n$, then $T_p M \cong \R^n$ with $p \in M$.
+\end{conclusion}
+\subsection{Differential of a map}

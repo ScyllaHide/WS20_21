@@ -1,0 +1,238 @@
+algebraisch haben wir folgende Sachen
+\begin{align*}
+	\begin{matrix}
+		\text{kombinatorische Strukturen } &\leftrightarrow& \text{ Gruppe der ``Symmetrien''}\\
+		\text{Relationen gegeben }&\rightarrow& \text{ Automorphismen}\\
+		\text{Invariante Relation } &\leftarrow& \text{ $G$ gegeben}
+	\end{matrix}
+\end{align*}
+\begin{*erinnerung}[\cref{sec2:exm:action_c}]
+	$g \in S_M$ induziert $\tilde{g} \in S_{M^n}$ durch
+	\begin{align*}
+		(a_1,\dots,a_n)^g := (a_1, \dots,a_n)^{\tilde{g}} := (a_1^g, \dots,a_n^g)
+	\end{align*}
+	Bezeichnung der $(\tilde{G},M^n)$ auch mit $(G,M^n)$ oder $(G^{[n]},M^n)$.\\
+	\cref{sec2:exm:action_a} $\implies$ Wirkung auf $\powerset(M^n)$\\
+	Bezeichnung $(G, \powerset(M^n))$ (für $G \leqq S_M$:
+	\begin{align*}
+		\Phi^g := \set{\ul{a}^{\tilde{g}} \mid \ul{a} \in \Phi} \quad \text{ vergleiche \cref{sec1:def:multiplication_permu} für } \Phi \subseteqq M^n
+	\end{align*}
+\end{*erinnerung}
+\begin{definition}
+	$g \in S_M, \Phi \subseteqq M^n$ $n$-stellige Relation (Elemente ($n$-Tupel) als Spalten einer ``Matrix''). $g$ \begriff{bewahrt} $\Phi$ (Bezeichnung $g \keep \Phi$), also $\Phi$ \begriff{invariant} für $g$, bzw \scyllanote{$g$ Automorphismus von $\Phi$}\\
+	\begin{align*}
+		:\equival \Phi^g \subseteqq \Phi \text{ bzw. $\Phi^g = \Phi$}
+	\end{align*}
+	d.h. $\forall a_1, \dots, a_n \in M\colon (a_1,\dots,a_n) \in \Phi \overset{\scyllanote{\equival}}{\implies} a_1^g, \dots a_n^g \in \Phi$\\
+	($M$ endlich: $g \keep \Phi \equival g$ Automorphismus)
+\end{definition}
+\begin{notation}
+	Bezeichne die Menge der endlich-stelligen Relation mit
+	\begin{align*}
+		R_M &:= \set{\Phi \mid \subseteq M^n \mid n=1,2,3,\dots}\\
+		\Aut \Phi = \Aut_M\Phi := \set{g \in S_M \mid \Phi^g = \Phi}\\
+		\intertext{Für $\QQ \subseteq R_M$:}
+		\Aut \QQ &:= \bigcap_{\Phi \in \QQ} \Aut \Phi \quad \text{(Automorphismen von $\QQ$)}\\
+		n-\Inv (G,M) &:= n-\Inv_M G\;(n-\Inv G)\\
+		&=\set{\Phi \subseteq M^n \mid \forall g \in G \colon g \keep \Phi}
+	\end{align*}
+	$n$-stellige Invarianten von $G$:\\
+	\begin{align*}
+		\Inv_M G := \bigcup_{n=1}^{\infty} n-\Inv G \quad \text{(\emph{Invarianten} von $G$)}
+		\intertext{Jede binäre Relation, also auch}
+		\set{(g,\Phi) \mid \Phi^g = \Phi} \subseteqq S_M \times R_M
+	\end{align*}
+	induziert eine \begriff{Galoisverbindung} $(\phi, \psi)$.	
+\end{notation}
+\begin{definition}
+	\label{sec4:def:galois}
+	Durch $\Aut$ und $\Inv$ ist eine Galoisverbindung gegeben:
+	\begin{align*}
+		\phi \colon \Aut \begin{cases}
+			\powerset(R_M) &\to \powerset(S_M)\\
+			\QQ &\mapsto \Aut \QQ\\
+		\end{cases}\\
+		\psi \colon \Inv \begin{cases}
+			\powerset(S_M) &\to \powerset(R_M)\\
+			G &\mapsto \Inv G
+		\end{cases}
+	\end{align*}
+	insbesondere gelten die folgenden Eigenschaften $(G,G' \subseteq S_M, \QQ, Q'\subseteq R_M)$:
+	\begin{defenum}
+		\item $G \subseteqq G' \implies \Inv G \supseteqq \Inv G'$ \label{sec4:def:galois_a}
+		\item $G \subseteqq Q' \implies \Aut \QQ \supseteqq \Aut Q'$ \label{sec4:def:galois_b}
+		\item $G \subseteqq \Aut \Inv G$ \label{sec4:def:galois_c}
+		\item $U \subseteq \Inv \Aut U$ \scyllanote{What is $U$ here? :o} \label{sec4:def:galois_d}
+		\item $\Aut \Inv \Aut \QQ = \Aut \QQ$ \label{sec4:def:galois_e}
+		\item $\Inv \Aut \Inv G = \Inv G$ \label{sec4:def:galois_f}
+		\item $G \mapsto \Aut \Inv G$ ist Hüllenoperator \scyllanote{What is a Hüllenoperator?} \label{sec4:def:galois_g}
+		\item $\QQ \mapsto \Inv \Aut \QQ$ ist Hüllenoperator \label{sec4:def:galois_h}
+		\item $G \subseteqq \Aut \QQ \equival \Inv G \supseteqq \QQ$ \label{sec4:def:galois_i}
+		\item $\Aut$ und $\Inv$ sind Bijektionen auf den Galoishüllen
+		\begin{align*}
+			G = \Aut \Inv G \quad \QQ = \Inv \Aut \QQ
+		\end{align*} \label{sec4:def:galois_j}
+	\end{defenum}
+\end{definition}
+\begin{*remark}
+	\begin{itemize}
+		\item \cref{sec4:def:galois_a}-\cref{sec4:def:galois_d} definieren bereits die Galoisverbindung.
+		\item \cref{sec4:def:galois_e} - \cref{sec4:def:galois_j} sind Folgerungen aus \cref{sec4:def:galois_a}-\cref{sec4:def:galois_d}
+	\end{itemize}
+\end{*remark}
+\begin{*erinnerung}[Hüllenoperator]
+	content... %TODO add a small definition of a Hüllenoperator here!
+\end{*erinnerung}
+\begin{definition}
+	\label{sec4:def:Orbitdef}
+	Eine Relation der Form\begin{align*}
+		(a_1,\dots, a_n)^G = \set{(a_1, \dots, a_n)^g \mid g \in G}
+	\end{align*}
+	heißt \begriff{$n$-Bahn} ($n$-Orbit) von $G \leqq S_M$.\\
+	Notation:
+	\begin{align*}
+		n-\Orb(G,M) &= \text{ Menge der $n$-Bahnen}\\
+		&= \set{\ul{a}^G \mid \ul{a} \in M^n}
+	\end{align*}
+\end{definition}
+\begin{*remark}
+	\begin{enumerate}
+		\item $\Phi \in n-\Orb(G,M) \equival \Phi \in 1-\Orb(G^{[n]},M^n)$
+		\item $\Phi \in \Inv(G,M) \equival \Phi$ invariante Menge von $(G^{[n]},M^n)$ (vergleiche \cref{sec1:exm:Orbit})
+	\end{enumerate}
+\end{*remark}
+\begin{proposition}
+	Sei $G \le S_M$.
+	\begin{propenum}
+		\item Jede $n$-Bahn ist eine invariante Relation:
+		\begin{align*}
+			n-\Orb(G,M) \subseteqq n-\Inv(G,M)
+		\end{align*}\label{sec4:prop:relation_a}
+		\item Jede $n$-stellige invariante Relation ist (disjunkte) Vereinigung von $n$-Bahnen \label{sec4:prop:relation_b}
+		\item $\abs{n-\Inv (G,M)} = 2^{\abs{n-\Orb(G,M)}}$ \label{sec4:prop:relation_c}
+	\end{propenum}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}
+		\item $\ul{a}^{G \cdot G} = \ul{a^G}$ für beliebige $\ul{a} \in M^n$ (wobei $\ul{a}^G$ $n$-Bahn ist)
+		\item folgt aus \cref{lem_1.11_4} (\cref{sec4:prop:relation_b} für $n$-Bahnen) und Bemerkung zu \cref{sec4:def:Orbitdef}
+	\end{enumerate}
+\end{proof}
+Folgerung aus \cref{prop:lagrange}.
+\begin{lemma}
+	Für $\Phi \in n-\Orb(G,M)$ und $\ul{a} = (a_1, \dots, a_n) \in \Phi$, gilt:
+	\begin{align*}
+		\abs{\Phi} = [G\colon G_{a_1, \dots,a_n}] = \frac{\abs{G}}{\abs{(a_1,\dots,a_n)}}.
+	\end{align*}
+	($G_{a_1, \dots,a_n}$ ist Stabilisator und \scyllanote{$\QQ=G^{[n]}$, letzteres gilt nach \cref{sec2:exm:actions}})
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		\Phi &= (a_1, \dots, a_n)^G =: \ul{a}^{\colortilde{G}}\\
+		\colortilde{G}_{\ul{a}} &= G_{a_1\dots a_n} \text{für Wirkung } (\colortilde{G},M^n)\\
+		&\xRightarrow{\cref{prop:lagrange}} \abs{\colortilde{G}} = \abs{G} = \abs{\colortilde{G}_{\ul{a}}}\cdot \abs{\ul{a}^{\colortilde{G}}} 
+	\end{align*}
+\end{proof}
+Galoisverbindung $\Aut-\Inv$ (vergleiche \cref{sec4:def:Galois})\\
+\begin{itemize}
+	\item Was sind die Galoishüllen? (d.h. $\Aut \QQ$ bzw. $\Inv G$?)
+	\item Probleme:
+	\begin{itemize}
+		\item Welche (Permutations)Gruppen sind Automorphismengruppen von geeigneten invarianten Relation?
+		\item Welche Relationsmengen sind die invarianten Relationen für eine geeignete Gruppe $G \leqq S_M$?
+	\end{itemize}
+	\item Setze von \person{Maire Krasner} (1912-1985) (hier nur für endliche Grundmengen $M$)
+\end{itemize}
+Vorbemerkung:
+\begin{proposition}
+	\label{sec4:prop:Q_permu}
+	Sei $\QQ \subseteq R_M$. Dann ist $\Aut_M \QQ$ eine (Permutations)Gruppe ($\le S_M$).
+\end{proposition}
+\begin{proof}
+	SeSt!
+\end{proof}
+\begin{theorem}[1. Satz von \person{Krasner}]
+	Sei $M = \set{a_1, \dots,a_m}$ endlich!
+	\begin{theoenum}
+		\item Jede Permutationsgruppe $(G,M)$ ist Automorphismengruppe einer geeigneten Menge von Relationen. Insbesondere gilt:
+		\begin{align*}
+			G &= \Aut \Inv G\\
+			  &= \Aut \Orb G \text{ $\Orb$ alle $n$-Bahn, }n \in \set{1,2,3,\dots}\\
+			  &= \Aut m-\Orb G\\
+			  &= \Aut \ul{a}G \quad (\ul{a}:= (a_1, \dots, a_m)) 
+		\end{align*}
+		(Es reicht eine einzige $m$-stellige Relation)\label{sec4:theo:krasner_a}
+		\item Für beliebige Teilmenge $G \subseteqq S_M$ gilt:
+		\begin{align*}
+			\gen{G} = \Aut \Inv G
+		\end{align*}
+		($\gen{G}$ interne Beschreibung der von $G$ erzeugten Untergruppe, $\Aut \Inv G$ externe Beschreibung der von $G$ erzeugten Untergruppe (als Galoishülle))\label{sec4:theo:krasner_b}
+	\end{theoenum}
+\end{theorem}
+\begin{definition}
+	\begin{enumerate}
+		\item zu \cref{sec4:theo:krasner_a} Wir zeigen zunächst 
+		\begin{align*}
+			\Aut \Phi \subseteqq G
+		\end{align*}
+	für die von $\ul{a} = (a_1, \dots, a_m)$ erzeugte $m$-Bahn $\Phi = aG$. Sei $f \in \Aut \Phi \implies \underbracket{(a_1, \dots, a_m)}_{\in \Phi}^f = \ul{a}^{\ul{G}}$, also $\exists g \in G \colon (a_1, \dots, a_m)^f = (a_1, \dots, a_m)^g \in \ul{a}^{\ul{G}}$, d.h. $f = g \in G$, also $\Aut \Phi \subseteq G$.\\
+	Die angegebenen Gleichungen folgen nun unmittelbar:
+	\begin{align*}
+		G \overset{\cref{sec4:def:galois_c}}&{\subseteqq} \Aut \Inv G \overset{\cref{sec4:def:galois_b}}{\subseteqq} \Aut \Orb G\\
+		& \Aut m-\Orb G \subseteqq \Aut \set{\Phi} \subseteqq G.
+	\end{align*}
+	\item zu \cref{sec4:theo:krasner_b}
+	\begin{align*}
+		&G \subseteqq \Aut \Inv G \quad \cref{sec4:def:galois_c}\\
+		&\implies \gen{G} \subseteqq \gen{\Aut \Inv G} \overset{\cref{sec4:prop:Q_permu}}{=} \Aut \Inv G \subseteq \Aut \Inv \gen{G} \overset{\cref{sec4:theo:krasner_a}}{=} \gen{G}.
+	\end{align*}
+	\end{enumerate}
+\end{definition}
+\begin{remark}[Operationen auf Relationen]\label{sec4:rem:oper_rela}
+	Jede Formel $\phi(M, \dots,R_q, a_1, \dots, x_n)$ des Prädikantenkalküls 1. Stufe $(\exists, \forall, \vee, \wedge, \neg,=)$ und Relationssymbole (Prädikate) $R_1, \dots, R_q$ ($R_i$ sind $i$-stellig, $i = 1, \dots, q$) und freie Variablen $x_1, \dots, x_n$ definiert eine $q$-stellige Operation
+	\begin{align*}
+		Fq: \powerset(M^{r_i}) \times \dots \powerset(M^{r_i}) \to \powerset(M^n)
+	\end{align*}
+	(genau er \begriff{logische Operation}), die $q$ vielen Relationen $\Phi_1 \subseteq M^{r_1}, \dots , \Phi_g\subseteq M^{r_q}$ eine $n$-stellige Relation $F_{\phi}(\Phi_1,\dots,\Phi_q)$ zuordnet:
+	\begin{align*}
+		F_{\phi}(\Phi_1, \dots, \Phi_q) := \set{(a_1, \dots, a_q) \in M^n \mid \models \phi(\Phi_1, \dots, \Phi_q, a_1, \dots, a_n)}
+	\end{align*}
+	(wobei $\models$ ``es gilt'' heisst.)
+\end{remark}
+\begin{example}[logische Operationen]
+	\begin{expenum}
+		\item $\phi(R_1, R_2, x,y) :\equiv \exists z \colon R_1(x,y) \vee R_2(z,y)$
+		\begin{align*}
+			F_{\phi}(\Phi_1,\Phi_2) = \set{(x,y) \in M^2 \mid \exists z \colon \Phi_1(x,z) \vee \Phi_2(z,y)} = \phi_1 \circ \Phi_2 \quad \text{ Relationenprodukt}
+		\end{align*}
+		\item \begin{align*}
+			\phi_{1\scyllanote{2}}(R_1,R_2,x,y) &:\equiv R_1(x,y) \vee \scyllanote{\wedge} R_2(x,y)\\
+			F_{\phi_1, \scyllanote{\phi_2}}(\Phi_1, \Phi_2) &= \Phi_1 \cap \scyllanote{\cup} \Phi_2
+		\end{align*}
+		\item $\phi(R_1, x_1, \dots, x_n) :\equiv \neg R_1(x_1, \dots, x_n)$
+		\begin{align*}
+			F_{\phi}(\Phi_1)&=\neg \Phi_1 \quad (=M^n \setminus \Phi \text{ Komplement})
+		\end{align*}
+		\item $\phi(x_1, \dots, x_4) \vee x_1 = x_2 \vee x_3 = x_4$ (keine Prädikate für $q=0$) $\implies$ konstante Operation, 
+		\begin{align*}
+			F_{\phi} = \set{(a_1,a_2,a_3, a_4) \in M^4 \mid a_1 = a_2 \vee a_3 = a_4 \subseteq M^4}
+		\end{align*}
+		\item $\phi(x_1, x_2) := x_1 = x_2 \implies$ Konstante
+		\begin{align*}
+			F_{\phi} = \set{(a_1, a_2) \in M^2 \mid a_2 = a_1} = \Delta_M \quad \text{Gleichheitsrelation}
+		\end{align*}
+		\item $\phi(R_1, x_1, \dots, x_{i-1}, x_{i+1}, \dots, x_n) := \exists x_i \colon R_1(x_1, \dots, x_i, \dots, x_n)$
+		\begin{align*}
+			F_{\phi}(\Phi_1) &= \set{(a_1, \dots, a_{i-1}, a_{i+1},\dots, a_n) \in M^{n-1} \mid \exists a_i \colon (a_1, \dots, a_{i-1}, a_{i+1}, \dots, a_n) \in \Phi_1}\\
+			&=: \pi_{n \setminus \set{i}}(\Phi_1) \text{ Projektion von $\Phi_1$ auf die $(\ul{n}\setminus \set{i})$-ten Koordinaten.}
+		\end{align*}
+		Streichen der $i$-ten Zeile (Bei Darstellung von Relationen durch ``Matrix'', Elemente ($n$-Tupel) als Spalten)
+	\end{expenum}
+\end{example}
+\begin{definition}[Krasner-Algebra]
+	Für $\QQ \subseteq R_M$ sei
+	\begin{align*}
+		[\QQ] := \set{F_{\phi}(\Phi_1, \dots, \Phi_q)\mid \Phi_1, \dots, \Phi_q \in \QQ, \phi(R_1, \dots, R_q, x_1, \dots, x_n)}
+	\end{align*}
+	formal wie in \cref{sec4:rem:oper_rela} mit $q \in \set{0,1,2, \dots}$, $n \in \set{1,2,\dots}$
+\end{definition}

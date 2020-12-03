@@ -60,7 +60,7 @@
 
 %decent space; change explicitly the space between header and content and footer and content
 \RequirePackage[left=2.1cm,right=3.1cm,bottom=3cm,footskip=0.75cm,headsep=0.5cm]{geometry}
-\RequirePackage[german]{babel}
+\RequirePackage[english]{babel}
 
 
 \ifpdf
@@ -329,14 +329,7 @@
 	frametitlefont=\normalfont\bfseries\color{black},%
 	innerleftmargin=10pt,%
 	skipabove=5pt,%
-]{example}[theorem]{\hspace*{-10pt}\rule{5pt}{5pt}\hspace*{5pt}Beispiel}
-
-\newmdtheoremenv[%
-hidealllines=true,%
-frametitlefont=\normalfont\bfseries\color{black},%
-innerleftmargin=10pt,%
-skipabove=5pt,%
-]{fact}[theorem]{\hspace*{-10pt}\rule{5pt}{5pt}\hspace*{5pt}Fakt}
+]{example}[theorem]{\hspace*{-10pt}\rule{5pt}{5pt}\hspace*{5pt}Example}
 
 \newmdtheoremenv[%
 	hidealllines=true,%
@@ -364,12 +357,12 @@ skipabove=5pt,%
 	frametitlefont=\normalfont\bfseries\color{black},%
 	skipabove=5pt,%
 	innerleftmargin=10pt,%
-]{*remark}{\hspace*{-10pt}$\blacktriangleright$\hspace*{\dimexpr 10pt - \blacktrianglewidth\relax}Bemerkung}
+]{*remark}{\hspace*{-10pt}$\blacktriangleright$\hspace*{\dimexpr 10pt - \blacktrianglewidth\relax}Remark}
 
 \newmdtheoremenv[%
 	hidealllines=true,%
 	innerleftmargin=10pt,%
-]{*example}{\hspace*{-10pt}\rule{5pt}{5pt}\hspace*{5pt}Beispiel}
+]{*example}{\hspace*{-10pt}\rule{5pt}{5pt}\hspace*{5pt}Example}
 
 \newmdtheoremenv[%
 	style=boxedtheorem,%
@@ -385,7 +378,7 @@ frametitlefont=\normalfont\bfseries\color{black},%
 innerleftmargin=0pt,%
 skipabove=5pt,%
 innerleftmargin=10pt,%
-]{*erinnerung}{\hspace*{-10pt}$\blacktriangleright$\hspace*{\dimexpr 10pt - \blacktrianglewidth\relax}Erinnerung}
+]{*erinnerung}{\hspace*{-10pt}$\blacktriangleright$\hspace*{\dimexpr 10pt - \blacktrianglewidth\relax}Reminder}
 
 \newmdtheoremenv[%
 	style=boxedtheorem,%
@@ -395,15 +388,11 @@ innerleftmargin=10pt,%
 	backgroundcolor=lightgrey,%
 ]{mathematica}{Mathematica/WolframAlpha-Befehle}
 
-\newtheorem{overview}[theorem]{Überblick}
+\newtheorem{overview}[theorem]{Overview}
 
 \newmdtheoremenv[
 	outerlinewidth=0.1pt,
 ]{repetition}{Wiederholung}
-
-\newmdtheoremenv[
-outerlinewidth=0.1pt,
-]{notation}{Notation}
 
 \newmdtheoremenv[
 outerlinewidth=0.1pt,
@@ -505,17 +494,17 @@ outerlinewidth=0.1pt,
 
 %cref: print correct translation
 \crefname{theorem}{Theorem}{Theorems}
-\crefname{proposition}{satz}{Satze}
+\crefname{proposition}{proposition}{propositons}
 \crefname{lemma}{Lemma}{Lemmata}
-\crefname{conclusion}{Folgerung}{Folgerungen}
+\crefname{conclusion}{Corolary}{Corollaries}
 \crefname{definition}{Definition}{Definitions}
-\crefname{remark}{Bemerkung}{Bemerkungen}
-\crefname{example}{Beispiel}{Beispiele}
-\crefname{erinnerung}{Erinnerung}{Erinnerungen}
+\crefname{remark}{Remark}{Remarks}
+\crefname{example}{Example}{Examples}
+\crefname{erinnerung}{Reminder}{Remindner}
 \crefname{algorithm}{Algorithmn}{Algorithmns}
-\crefname{*definition}{Definition}{Definitionen}
-\crefname{*remark}{Bemerkung}{Bemerkungen}
-\crefname{*example}{Beispiel}{Beispiele}
+\crefname{*definition}{Definition}{Definitions}
+\crefname{*remark}{Remark}{Remarks}
+\crefname{*example}{Example}{Examples}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Additional features

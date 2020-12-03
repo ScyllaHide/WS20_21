@@ -1,9 +1,7 @@
 % !TeX spellcheck = en_US
 \documentclass[ngerman,a4paper,order=firstname]{mathscript}
 \usepackage{mathoperators}
-\usepackage{chemfig}
-\usepackage{chemformula}
-%TODO fix names of enviroments into german? might look into the original.
+\usepackage{todonotes}
 
 % % % local commands
 \DeclareMathOperator{\Ad}{Ad}				% Adjoint
@@ -13,13 +11,6 @@
 \newcommand{\for}{\text{ for }}
 \renewcommand{\rhd}{\triangleright}
 \renewcommand{\lhd}{\triangleleft} 			% normal subgroups
-\DeclareMathOperator{\Set}{Set}				% Category of sets
-\newcommand{\cat}{\mathcal C}				% some category
-\DeclareMathOperator{\Vect}{Vect}			% Category of vector spaces
-\DeclareMathOperator{\Grp}{Grp}				% Category of groups
-\DeclareMathOperator{\QVect}{QVect}			% Cat of quasi vector bundles
-\DeclareMathOperator{\Mod}{Mod}				% Cat of moduls
-\newcommand{\EE}{\mathscr E}				% some cat E
 \DeclareMathOperator{\Ann}{Ann}				% annihilator
 \DeclareMathOperator{\morph}{Morph}				% cat of morphs
 \newcommand{\Circlearrowleft}{\mathbin{\rotatebox[origin=c]{180}{$\circlearrowright$}}}
@@ -29,52 +20,45 @@
 \DeclareMathOperator{\Lin}{\mathscr L}		% set of continuous linear maps from V to W
 \newcommand{\hset}[3]{\mathrm{H}^{#1}(#2;#3)} % set of equivalent cocycles over X
 \newcommand{\isoset}[3]{\Phi^{#1}_{#2}(#3)} % isomorphism class of - F vector bundles
+% % % % % Category stuff % % % %
+\DeclareMathOperator{\Set}{Set}				% Category of sets
+\DeclareMathOperator{\Vect}{Vect}			% Category of vector space
+\DeclareMathOperator{\QVect}{QVect}			% Cat of quasi vector bundles
+\DeclareMathOperator{\Mod}{Mod}	
 \DeclareMathOperator{\Open}{Open}				% inclusion category for presheafs
-\newcommand{\presheaf}{\mathcal S}			% presheaf
+\newcommand{\presheaf}{\mathscr PS}			% presheaf
+\newcommand{\CC}{\mathscr C}
+\DeclareMathOperator{\Ens}{Ens}
+\DeclareMathOperator{\Pos}{Pos}
+\DeclareMathOperator{\Groups}{Groups}
+\DeclareMathOperator{\Ab}{Ab}
+\newcommand{\EE}{\mathscr E}
+\DeclareMathOperator{\Morph}{Morph}
+\DeclareMathOperator{\Ob}{Ob}				% some cat E
+% % % % DiffGeo Stuff % % % % %
+\newcommand{\der}{\partial}						% shorthand
+\newcommand{\fder}[2]{\frac{\der #1}{\der #2}}	% fraction of derivatives
+\newcommand{\pull}[1]{#1^{\ast}}				% pullback stuff
+\newcommand{\open}{\text{ open }}
+\newcommand{\BB}{\mathcal B}
+\renewcommand{\AA}{\mathcal A}				% Atlas
+\renewcommand{\SS}{\mathbb S}		% Sphere
 \newcommand{\equival}{\Leftrightarrow}
-\DeclareMathOperator{\Orb}{Orb}
-\newcommand{\sest}{SeSt.}
-\renewcommand{\phi}{\varphi}
-\newcommand{\gen}[1]{\langle #1 \rangle}
-\newcommand{\st}[1]{#1^{\ast}}
-\DeclareMathOperator{\Sub}{Sub}
-\newcommand{\dcup}{\dot\cup}
-\newcommand{\ja}{\text{ ja}}
-\newcommand{\nein}{\text{nein}}
-%\DeclareMathOperator{\sgn}{sgn}
-\newcommand{\keep}{\triangleright}
-\DeclareMathOperator{\Inv}{Inv}
-\newcommand{\QQ}{\mathcal Q}
-
-% % % % % % % color only tilde % % % % %
-\newcommand{\colorwt}[2][2]{%
-	{}\mspace{#1mu}\mathrlap{\textcolor{red}{\widetilde{\phantom{#2}}}}%
-	\mspace{-#1mu}#2%
-}
-\newcommand{\colortilde}[2][2]{%
-	{}\mspace{#1mu}\mathrlap{\textcolor{red}{\tilde{\phantom{#2}}}}%
-	\mspace{-#1mu}#2%
-}
-% source: https://tex.stackexchange.com/questions/186157/how-to-color-only-a-tilde-accent-on-a-letter
-% % % % examples
-%X$\widetilde{E}^{w}$X$\widetilde{I}$X
-%
-%X$\colorwt[3]{E}^{w}$X$\colorwt[3]{I}$X
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\SS}{\mathbb{S}}
+\newcommand{\KK}{\mathbb{K}}
+\DeclareMathOperator{\Diffeo}{Diffeo}
+\DeclareMathOperator{\Diff}{Diff}
 
 % % % % color note stuff
-%\newcommand{\marganote}[1]{\textcolor{gray}{#1}}
+\newcommand{\vadnote}[1]{\textcolor{gray}{#1}}
 %\newcommand{\fehmnote}[1]{\textcolor{red}{#1}}
-\newcommand{\scyllanote}[1]{\textcolor{red}{#1}}
+\newcommand{\scyllanote}[1]{\textcolor{blue}{#1}}
 
-% % % % % underline stuff
-%\newcommand{\ul}[1]{\underline{#1}}
 
 % Nice looking emptyset
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
-
-% remove matrix columns limit
-\setcounter{MaxMatrixCols}{20}
 
 % get this stupid arrows:
 %\usepackage{mathabx,graphicx}  % ---> add to mathoperators
@@ -121,8 +105,8 @@
 \setlist[theoenum]{label=(\roman*),ref=\thedefinition~(\roman*)}
 \crefalias{theoenumi}{theorem}
 
-\title{\textbf{Permutationsgruppen WS 20/21}}
-\author{Prof. Pöschel}
+\title{\textbf{Notes: Differential Geometry}}
+\author{ScyllaHide}
 
 \begin{document}
 \pagenumbering{roman}
@@ -138,27 +122,33 @@
 \pagenumbering{arabic}
 \pagestyle{fancy}
 
-\section*{Preface}
+\chapter*{Preface}
 \input{./TeX_files/Vorwort}
-\setcounter{section}{-1}
-\section{Einführung}
-\input{./TeX_files/sec0}
-\section{Permutationen und Permutationsgruppen}
-\input{./TeX_files/sec1}
-\section{Gruppenwirkungen und Darstellungen (Satz von \person{Cayley})}
-\input{./TeX_files/sec2}
-\section{Erzeugendensysteme und \person{Sims}-Ketten}
-\input{./TeX_files/sec3}
-\section{Automorphismen, invariante Relationen und die Sätze von \person{Krasner}}
-\input{./TeX_files/sec4}
+\chapter{Differential Manifolds}
+\input{./TeX_files/chap1}
+\chapter{Manifolds and Tangent spaces}
+\input{./TeX_files/chap2}
+%\chapter{Submanifolds}
+%\input{./TeX_files/chap3}
+%\chapter{Vector fields and vector flows}
+%\input{./TeX_files/chap4}
+%\chapter{LIE-Groups}
+%\input{./TeX_files/chap5}
+%\chapter{Tensor products and outer powers}
+%\input{./TeX_files/chap6}
+%\chapter{differential forms}
+\chapter{Sheaves}
+\input{./TeX_files/chap_app_a}
 
 \part*{Anhang}
 \addcontentsline{toc}{part}{Anhang}
 \appendix
 
 \nocite{*}
-%\bibliography{literatur}
-%\bibliographystyle{acm}
+\clearpage
+\addcontentsline{toc}{section}{References}
+\bibliography{lit}
+\bibliographystyle{apalike}
 
 %\printglossary[type=\acronymtype]
 
